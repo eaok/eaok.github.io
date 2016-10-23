@@ -1,0 +1,102 @@
+---
+title: 使用hexo搭建github博客
+date: 2016-9-29 20:19:57
+categories:
+- ubuntu
+tags:
+- hexo
+- npm
+---
+
+
+### 1、安装hexo
+Hexo官网 https://hexo.io/zh-cn/
+
+安装Node.js npm git-core
+`sudo apt-get install nodejs npm git`
+安装 hexo-deployer-git，否则会报 ERROR Deployer not found: git 的错误。
+`npm install hexo-deployer-git --save`
+安装 hexo
+`npm install -g hexo-cli`
+<!-- more -->
+
+### 2、使用hexo
+* 生成文件
+`hexo init hexo`
+`cd hexo`
+`npm install`
+* hexo命令
+```
+hexo new "postName"				#新建文章
+hexo new page "pageName"			#新建页面
+hexo generate					#生成静态页面至public目录
+hexo server					#开启预览访问端口（默认端口4000）
+hexo deploy					#将.deploy目录部署到GitHub
+hexo help					#查看帮助
+hexo version					#查看Hexo的版本
+
+命令的简写为：
+hexo n == hexo new
+hexo g == hexo generate
+hexo s == hexo server
+hexo d == hexo deploy
+
+hexo d -g		#生成加部署
+hexo s -g		#生成加预览，localhost:4000，查看搭建效果
+
+每次部署的步骤，可按以下三步来进行。
+hexo clean
+hexo generate
+hexo deploy
+```
+* 部署到Github
+修改_config.yml文件
+```
+# Deployment
+## Docs: http://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repository: git@github.com:kcoewoys/kcoewoys.github.io.git
+  branch: master
+```
+* 分支管理
+新建一个hexo分支，用于保存源文件，并将github上的hexo分支设为默认分支;
+git clone默认会把远程仓库整个给clone下来,但只会在本地默认创建一个默认分支
+`git branch -r`    查看远程分支
+`git branch -a`    查看所有分支
+建立本地对应分支
+`git checkout --track origin/hexo`
+`git checkout -b hexo origin/hexo`
+`git checkout origin/hexo`
+推送分支
+`git push origin hexo`
+
+### 3、使用主题
+hexo的可用主题 https://hexo.io/themes/
+next主题网站 http://theme-next.iissnan.com/
+`git clone https://github.com/iissnan/hexo-theme-next.git themes/next`
+修改配置文件 _config.yml
+`theme: next`
+
+### 4、npm相关
+```
+npm install pkg 			//本地安装
+npm install -g pkg 			//全局安装
+npm uninstall pkg 			//卸载
+npm remove pkg 				//移除
+npm update pkg 				//package更新
+npm search pkg 				//搜索
+
+npm ls				//查看安装了哪些包
+npm root 			//查看当前包的安装路径
+npm root -g 			//查看全局的包的安装路径
+npm help 			//帮助，如果要单独查看install命令的帮助，可以使用的npm help install
+npm install --help 		//列出所有 npm install 可能的参数形式
+
+npm set proxy 127.0.0.1:8123 	//设置proxy
+npm get proxy 			//查看proxy
+npm config delete proxy		//删除proxy
+
+npm install 			//方法就可以根据package.json安装所有的依赖包
+npm install pkg--save 		//安装的同时将信息写入package.json中项目路径中
+```

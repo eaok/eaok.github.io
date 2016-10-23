@@ -29,8 +29,8 @@ canonical: true
 # When running the site in a subdirectory (e.g. domain.tld/blog), remove the leading slash (/archives -> archives)
 menu:
   home: /
-  #categories: /categories
-  #about: /about
+  categories: /categories
+  about: /about
   archives: /archives
   tags: /tags
   #commonweal: /404.html
@@ -122,6 +122,9 @@ font:
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
 #social:
   #LinkLabel: Link
+social:
+  GitHub: https://github.com/kcoewoys
+  微博: http://weibo.com/3247028914
 
 
 # Social Links Icons
@@ -177,6 +180,9 @@ sidebar:
 
 # Blogrolls
 #links_title: Links
+links_title: Links
+links:
+  zuoye: https://www.zybuluo.com
 #links_layout: block
 #links_layout: inline
 #links:
@@ -201,7 +207,7 @@ custom_logo:
 # Available value:
 #    normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: normal
+highlight_theme: night
 
 
 # Automatically scroll page to section which is under <!-- more --> mark.
@@ -278,9 +284,9 @@ mathjax:
 # you can visit http://dev.duoshuo.com get duoshuo user id.
 duoshuo_info:
   ua_enable: true
-  admin_enable: false
-  user_id: 0
-  #admin_nickname: Author
+  admin_enable: true
+  user_id: 6344677077228193000
+  admin_nickname: me
 
 
 # Facebook SDK Support.
@@ -397,3 +403,5 @@ images: images
 
 # Theme version
 version: 5.0.2
+
+since: 2015
