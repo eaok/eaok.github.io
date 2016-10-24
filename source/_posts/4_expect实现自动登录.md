@@ -1,8 +1,9 @@
 ---
 title: expect实现自动登录
 date: 2016-10-22 17:28:24
-tags: expect
-categoreis: expect
+tags: [expect]
+categories: shell
+
 ---
 
 
@@ -12,7 +13,7 @@ categoreis: expect
 ### expect基本语法
 `spawn`: 后面加上需要执行的shell 命令，比如说spawn sudo touch testfile
 `expect`: 只有spawn 执行的命令结果才会被expect 捕捉到，因为spawn 会启动一个进程，只有这个进程的相关信息才会被捕捉到，主要包括：标准输入的提示信息，eof 和timeout。
-`send 和send_user`：send 会将expect 脚本中需要的信息发送给spawn 启动的那个进程，而send_user 只是回显用户发出的信息，类似于shell 中的echo 而已。
+`send 和send_user`：send 会将expect 脚本中需要的信息发送给spawn 启动的那个进程，而`send_user` 只是回显用户发出的信息，类似于shell 中的echo 而已。
 `expect` 与“{ ”之间直接必须有空格或则TAB间隔；
 `interact` 执行完成后保持交互状态，把控制权交给控制台，如果没有这一句登录完成后会退出，而不是留在远程终端上；
 `$argc`表示参数的数目，`$argv`表示参数，比如取第一个参数就是[lindex $argv 0]；

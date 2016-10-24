@@ -2,7 +2,8 @@
 title: 搭建亚马逊云aws免费服务器
 date: 2016-10-18 12:19:57
 tags: [aws,mosh]
-categories: ubuntu
+categories: linux
+
 ---
 
 ### 注册

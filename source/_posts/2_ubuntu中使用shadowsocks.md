@@ -2,7 +2,8 @@
 title: ubuntu中使用shadowsocks
 date: 2016-10-09 15:55:30
 tags: [shadowsocks,proxychains]
-categories: ubuntu
+categories: linux
+
 ---
 
 

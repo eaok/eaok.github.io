@@ -2,7 +2,8 @@
 title: 用hexo搭建github博客
 date: 2016-9-29 20:19:57
 tags: [hexo,npm]
-categories: hexo
+categories: linux
+
 ---
 
 
