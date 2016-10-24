@@ -47,14 +47,22 @@ hexo clean
 hexo generate
 hexo deploy
 ```
-* 部署到Github
+* 部署到Github和Coding上
+在Github和Coding上添加密匙，设置好终端中的用户名和邮箱，测试是否连接成功
+`git config --global user.name "Your Name"`
+`git config --global user.email "email@example.com"`
+`ssh -T git@git.coding.net`
+`ssh -T git@github.com`
 修改_config.yml文件
 ```
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repository: git@github.com:kcoewoys/kcoewoys.github.io.git
+- type: git
+  repo: git@github.com:kcoewoys/kcoewoys.github.io.git
+  branch: master
+- type: git
+  repo: git@git.coding.net:kcoewoys/kcoewoys.git
   branch: master
 ```
 * 分支管理

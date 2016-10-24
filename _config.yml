@@ -68,8 +68,15 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repository: git@github.com:kcoewoys/kcoewoys.github.io.git
+#  type: git
+#  repository: git@github.com:kcoewoys/kcoewoys.github.io.git
+#  branch: master
+#  https://hexo.io/docs/deployment.html
+- type: git
+  repo: git@github.com:kcoewoys/kcoewoys.github.io.git
+  branch: master
+- type: git
+  repo: git@git.coding.net:kcoewoys/kcoewoys.git
   branch: master
 
 feed:
