@@ -78,4 +78,17 @@ feed:
   limit: 20
   hub:
 
-duoshuo_shortname: kcoewoys
+#duoshuo_shortname: kcoewoys
+#avatar: https://avatars1.githubusercontent.com/u/32269?v=3&s=460
+#baidu_analytics: bcf6855e3b2d728d189e59b6ba7019d4
+
+index_generator:
+  per_page: 10
+
+archive_generator:
+  per_page: 30
+  yearly: true
+  monthly: true
+
+tag_generator:
+  per_page: 20

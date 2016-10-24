@@ -1,21 +1,18 @@
 ---
 title: ubuntu中使用shadowsocks
 date: 2016-10-09 15:55:30
-categories:
-- ubuntu
-tags:
-- shadowsocks 
-- proxychains
+tags: [shadowsocks,proxychains]
+categories: ubuntu
 ---
 
 
-### 1、安装shadowsock
+### 安装shadowsock
 shadowsock主页 https://github.com/shadowsocks/shadowsocks
 `sudo apt-get update`
 `sudo apt-get install python-gevent python-pip`
 `sudo pip install shadowsocks`
 
-### 2、编辑配置文件
+### 编辑配置文件
 `sudo vi etc/shadow.config`
 <!-- more -->
 ```
@@ -29,7 +26,7 @@ shadowsock主页 https://github.com/shadowsocks/shadowsocks
 }
 ```
 
-### 3、启动
+### 启动
 `sudo sslocal -c /etc/shadow.conf -d start`
 `sudo sslocal -c /etc/shadow.conf -d stop`
 后台长期启动shadowsockts
@@ -40,7 +37,7 @@ shadowsock主页 https://github.com/shadowsocks/shadowsocks
 在*exit 0*前加上一行：
 `/usr/local/bin/sslocal -c /etc/shadow.conf`
 
-### 4、安装一些加密方式所依赖的库
+### 安装一些加密方式所依赖的库
 python-m2crypto
 `apt-get install python-m2crypto`
 libsodium    //chacha20加密方式需要用到
@@ -55,7 +52,7 @@ echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf    # 修复关联
 ldconfig
 ```
 
-### 5、终端中使用shadowsocks
+### 终端中使用shadowsocks
 可以使用的有 **Privoxy Polipo proxychains**，前两者貌似不支持ssh,所以就选择了**proxychains**
 
 * 安装proxychains

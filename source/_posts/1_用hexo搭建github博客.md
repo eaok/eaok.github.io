@@ -1,15 +1,12 @@
 ---
-title: 使用hexo搭建github博客
+title: 用hexo搭建github博客
 date: 2016-9-29 20:19:57
-categories:
-- ubuntu
-tags:
-- hexo
-- npm
+tags: [hexo,npm]
+categories: ubuntu
 ---
 
 
-### 1、安装hexo
+### 安装hexo
 Hexo官网 https://hexo.io/zh-cn/
 
 安装Node.js npm git-core
@@ -20,7 +17,7 @@ Hexo官网 https://hexo.io/zh-cn/
 `npm install -g hexo-cli`
 <!-- more -->
 
-### 2、使用hexo
+### 使用hexo
 * 生成文件
 `hexo init hexo`
 `cd hexo`
@@ -71,14 +68,14 @@ git clone默认会把远程仓库整个给clone下来,但只会在本地默认�
 推送分支
 `git push origin hexo`
 
-### 3、使用主题
+### 使用主题
 hexo的可用主题 https://hexo.io/themes/
 next主题网站 http://theme-next.iissnan.com/
 `git clone https://github.com/iissnan/hexo-theme-next.git themes/next`
 修改配置文件 _config.yml
 `theme: next`
 
-### 4、npm相关
+### npm相关
 ```
 npm install pkg 			//本地安装
 npm install -g pkg 			//全局安装

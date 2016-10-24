@@ -1,6 +1,6 @@
 ---
-title: 关于
-date: 2016-10-23 15:16:14
+title: about
 type: about
 comments: false
+date: 2016-10-24 14:42:17
 ---

@@ -14,7 +14,7 @@ keywords: "Hexo, NexT"
 rss:
 
 # Specify the date when the site was setup
-#since: 2015
+since: 2015
 
 # Canonical, set a canonical link tag in your hexo, you could use it for your SEO of blog.
 # See: https://support.google.com/webmasters/answer/139066
@@ -29,10 +29,10 @@ canonical: true
 # When running the site in a subdirectory (e.g. domain.tld/blog), remove the leading slash (/archives -> archives)
 menu:
   home: /
-  categories: /categories
-  about: /about
   archives: /archives
+  categories: /categories
   tags: /tags
+  about: /about
   #commonweal: /404.html
 
 
@@ -145,6 +145,7 @@ social_icons:
 # in theme directory(source/images): /images/avatar.jpg
 # in site  directory(source/uploads): /uploads/avatar.jpg
 #avatar:
+avatar: https://avatars1.githubusercontent.com/u/32269?v=3&s=460
 
 
 # Table Of Contents in the Sidebar
@@ -164,25 +165,25 @@ toc:
 
 sidebar:
   # Sidebar Position, available value: left | right
+  #position: left
   position: left
-  #position: right
 
   # Sidebar Display, available value:
   #  - post    expand on posts automatically. Default.
   #  - always  expand for all pages automatically
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  Totally remove sidebar including sidebar toggler.
-  display: post
+  #display: post
   #display: always
-  #display: hide
+  display: hide
   #display: remove
 
 
 # Blogrolls
 #links_title: Links
-links_title: Links
+links_title: 链接
 links:
-  zuoye: https://www.zybuluo.com
+  作业部落: https://www.zybuluo.com
 #links_layout: block
 #links_layout: inline
 #links:
@@ -245,9 +246,11 @@ mathjax:
 
 # Baidu Analytics ID
 #baidu_analytics:
+baidu_analytics: bcf6855e3b2d728d189e59b6ba7019d4
 
 # Duoshuo ShortName
 #duoshuo_shortname:
+duoshuo_shortname: kcoewoys
 
 # Disqus
 #disqus_shortname:
@@ -286,7 +289,7 @@ duoshuo_info:
   ua_enable: true
   admin_enable: true
   user_id: 6344677077228193000
-  admin_nickname: me
+  admin_nickname: Author
 
 
 # Facebook SDK Support.
@@ -311,9 +314,9 @@ facebook_comments_plugin:
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
-  enable: false
-  app_id: #<app_id>
-  app_key: #<app_key>
+  enable: true
+  app_id: uza8zPEwB7eGrc4S0jg7EnaF-gzGzoHsz
+  app_key: c5COMQvwDBpFKrcBryQk0Qo6
 
 # Show PV/UV of the website/page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/
@@ -403,5 +406,3 @@ images: images
 
 # Theme version
 version: 5.0.2
-
-since: 2015

@@ -1,6 +1,6 @@
 ---
-title: 分类
-date: 2016-10-23 14:47:48
-type: categoreis
+title: categories
+type: categories
 comments: false
+date: 2016-10-24 14:36:31
 ---
