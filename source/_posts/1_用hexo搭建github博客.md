@@ -51,6 +51,7 @@ hexo deploy
 在Github和Coding上添加密匙，设置好终端中的用户名和邮箱，测试是否连接成功
 `git config --global user.name "Your Name"`
 `git config --global user.email "email@example.com"`
+`ssh-keygen -t rsa -C "youremail@example.com"` 把~/.ssh/id_rsa.pub的内容添加到网站上
 `ssh -T git@git.coding.net`
 `ssh -T git@github.com`
 修改_config.yml文件
