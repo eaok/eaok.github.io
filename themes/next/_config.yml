@@ -184,6 +184,9 @@ sidebar:
 links_title: 链接
 links:
   作业部落: https://www.zybuluo.com
+  七牛云: https://portal.qiniu.com/signup?code=3lmtslipr8cwi
+  processon: https://www.processon.com/i/5810755de4b06a4d48f06ae7
+
 #links_layout: block
 #links_layout: inline
 #links:
@@ -246,7 +249,7 @@ mathjax:
 
 # Baidu Analytics ID
 #baidu_analytics:
-baidu_analytics: bcf6855e3b2d728d189e59b6ba7019d4
+baidu_analytics: 092fa307200c32bd9f3c2ab0672a94d7
 
 # Duoshuo ShortName
 #duoshuo_shortname:
@@ -272,11 +275,12 @@ duoshuo_shortname: kcoewoys
 
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters/
-#google_site_verification:
+google_site_verification: PT0ov-1QVIJfUGNxYmTnxSySJRfFNVZFzRbBzI1AZ1I
+baidu-site-verification: f3EvwIt9Sa
 
 
 # Google Analytics
-#google_analytics:
+google_analytics: 86273783-1
 
 # CNZZ count
 #cnzz_siteid:
@@ -322,22 +326,22 @@ leancloud_visitors:
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/
 busuanzi_count:
   # count values only if the other configs are false
-  enable: false
+  enable: true
   # custom uv span for the whole site
   site_uv: true
-  site_uv_header: <i class="fa fa-user"></i>
-  site_uv_footer:
+  site_uv_header: 本站总访客数
+  site_uv_footer: 人次
   # custom pv span for the whole site
-  site_pv: true
+  site_pv: false
   site_pv_header: <i class="fa fa-eye"></i>
   site_pv_footer:
   # custom pv span for one page only
-  page_pv: true
+  page_pv: false
   page_pv_header: <i class="fa fa-file-o"></i>
   page_pv_footer:
 
 # Tencent analytics ID
-# tencent_analytics:
+tencent_analytics: 59159315
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
 baidu_push: false

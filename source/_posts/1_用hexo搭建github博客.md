@@ -11,19 +11,19 @@ categories: linux
 Hexo官网 https://hexo.io/zh-cn/
 
 安装Node.js npm git-core
-`sudo apt-get install nodejs npm git`
-安装 hexo-deployer-git，否则会报 ERROR Deployer not found: git 的错误。
 `npm install hexo-deployer-git --save`
 安装 hexo
 `npm install -g hexo-cli`
 <!-- more -->
 
 ### 使用hexo
-* 生成文件
+#### 生成文件
 `hexo init hexo`
 `cd hexo`
 `npm install`
-* hexo命令
+`sudo apt-get install nodejs npm git`
+安装 hexo-deployer-git，否则会报 ERROR Deployer not found: git 的错误。
+#### hexo命令
 ```
 hexo new "postName"				#新建文章
 hexo new page "pageName"			#新建页面
@@ -47,7 +47,7 @@ hexo clean
 hexo generate
 hexo deploy
 ```
-* 部署到Github和Coding上
+#### 部署到Github和Coding上
 在Github和Coding上添加密匙，设置好终端中的用户名和邮箱，测试是否连接成功
 `git config --global user.name "Your Name"`
 `git config --global user.email "email@example.com"`
@@ -66,7 +66,13 @@ deploy:
   repo: git@git.coding.net:kcoewoys/kcoewoys.git
   branch: master
 ```
-* 分支管理
+#### 绑定域名
+先到阿里云上申请一个域名，top域名第一年只要2块钱，解析设置如图：
+![万网解析设置](http://ofat4idzj.bkt.clouddn.com/%E4%B8%87%E7%BD%91%E8%A7%A3%E6%9E%90%E8%AE%BE%E7%BD%AE.png)
+github实现域名绑定，需要在项目根目录有一个CNAME文件，为此，在hexo/source/下新建一个CNAME文件，内容为你要绑定的域名。
+coding实现域名绑定，需要到项目里面进行设置，如图：
+![coding page 设置](http://ofat4idzj.bkt.clouddn.com/coding%20page%20%E8%AE%BE%E7%BD%AE.png)
+#### 分支管理
 新建一个hexo分支，用于保存源文件，并将github上的hexo分支设为默认分支;
 git clone默认会把远程仓库整个给clone下来,但只会在本地默认创建一个默认分支
 `git branch -r`    查看远程分支
