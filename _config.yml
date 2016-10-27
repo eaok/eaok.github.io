@@ -5,14 +5,14 @@
 # Site
 title: 我还记得
 subtitle: 朝花夕拾
-description: 转瞬间消灭了踪影
+description: 转瞬间消逝了踪影
 author: kcoewoys
 language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://kcoewoys.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -39,8 +39,8 @@ relative_link: false
 future: true
 highlight:
   enable: true
-  line_number: true
-  auto_detect: false
+  line_number: false
+  auto_detect: true
   tab_replace:
 
 # Category & Tag
@@ -100,3 +100,9 @@ archive_generator:
 tag_generator:
   per_page: 20
  
+# 自动生成sitemap
+#sitemap:
+#path: sitemap.xml
+#baidusitemap:
+#path: baidusitemap.xml
+

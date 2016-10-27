@@ -3,7 +3,8 @@
 # ---------------------------------------------------------------
 
 # Put your favicon.ico into `hexo-site/source/` directory.
-favicon: /favicon.ico
+#favicon: /favicon.ico
+favicon: spinner 
 
 # Set default keywords (Use a comma to separate)
 keywords: "Hexo, NexT"
@@ -43,7 +44,7 @@ menu:
 #   When an question mask icon presenting up means that the item has no mapping icon.
 menu_icons:
   enable: true
-  #KeyMapsToMenuItemKey: NameOfTheIconFromFontAwesome
+  KeyMapsToMenuItemKey: NameOfTheIconFromFontAwesome
   home: home
   about: user
   categories: th
