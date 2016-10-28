@@ -4,7 +4,7 @@
 
 # Put your favicon.ico into `hexo-site/source/` directory.
 #favicon: /favicon.ico
-favicon: spinner 
+favicon: http://ofat4idzj.bkt.clouddn.com/icoworld.ico 
 
 # Set default keywords (Use a comma to separate)
 keywords: "Hexo, NexT"
