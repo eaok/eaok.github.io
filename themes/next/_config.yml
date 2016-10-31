@@ -34,7 +34,7 @@ menu:
   categories: /categories
   tags: /tags
   about: /about
-  #commonweal: /404.html
+#  commonweal: /404.html
 
 
 # Enable/Disable menu icons.
@@ -184,8 +184,9 @@ sidebar:
 #links_title: Links
 links_title: 链接
 links:
-  作业部落: https://www.zybuluo.com
+  魔方: http://www.atool.org/magic_cube.php
   七牛云: https://portal.qiniu.com/signup?code=3lmtslipr8cwi
+  作业部落: https://www.zybuluo.com
   processon: https://www.processon.com/i/5810755de4b06a4d48f06ae7
 
 #links_layout: block
@@ -333,11 +334,11 @@ busuanzi_count:
   site_uv_header: 本站总访客数
   site_uv_footer: 人次
   # custom pv span for the whole site
-  site_pv: false
+  site_pv: true
   site_pv_header: <i class="fa fa-eye"></i>
   site_pv_footer:
   # custom pv span for one page only
-  page_pv: false
+  page_pv: true
   page_pv_header: <i class="fa fa-file-o"></i>
   page_pv_footer:
 
