@@ -2,7 +2,7 @@
 title: expect实现自动登录
 date: 2016-10-22 17:28:24
 tags: [expect]
-categories: shell
+categories: [shell,script]
 
 ---
 
