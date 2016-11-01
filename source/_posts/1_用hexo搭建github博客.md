@@ -25,15 +25,15 @@ Hexo官网 https://hexo.io/zh-cn/
 安装 hexo-deployer-git，否则会报 ERROR Deployer not found: git 的错误。
 #### hexo命令
 ```
-hexo new "postName"				#新建文章
-hexo new page "pageName"			#新建页面
-hexo generate					#生成静态页面至public目录
-hexo server					#开启预览访问端口（默认端口4000）
-hexo deploy					#将.deploy目录部署到GitHub
-hexo help					#查看帮助
-hexo version					#查看Hexo的版本
+hexo new "postName"		#新建文章
+hexo new page "pageName"	#新建页面
+hexo generate			#生成静态页面至public目录
+hexo server			#开启预览访问端口（默认端口4000）
+hexo deploy			#将.deploy目录部署到GitHub
+hexo help			#查看帮助
+hexo version			#查看Hexo的版本
 
-命令的简写为：
+#命令的简写为：
 hexo n == hexo new
 hexo g == hexo generate
 hexo s == hexo server
@@ -42,10 +42,7 @@ hexo d == hexo deploy
 hexo d -g		#生成加部署
 hexo s -g		#生成加预览，localhost:4000，查看搭建效果
 
-每次部署的步骤，可按以下三步来进行。
-hexo clean
-hexo generate
-hexo deploy
+hexo clean && hexo d -g #部署
 ```
 #### 部署到Github和Coding上
 在Github和Coding上添加密匙，设置好终端中的用户名和邮箱，测试是否连接成功
@@ -92,11 +89,12 @@ next主题网站 http://theme-next.iissnan.com/
 `git clone https://github.com/iissnan/hexo-theme-next.git themes/next`
 修改配置文件 _config.yml
 `theme: next`
-`
-next\source\css\_variables\base.styl			修改颜色变量
-next\source\css\_custom\custom.styl			自定义
-next\source\css\_common\components\sidebar\sidebar.styl	修改侧边栏
-`
+```
+next\source\css\_variables\base.styl			#修改颜色变量
+next\source\css\_custom\custom.styl			#自定义
+next\source\css\_common\components\sidebar\sidebar.styl	#修改侧边栏
+next\source\css\_common\components\highlight\theme.styl #修改代码主题
+```
 **添加背景动画**
 编辑`next/layout/_layout.swig`，在`</body>`标签上方添加
 ```
