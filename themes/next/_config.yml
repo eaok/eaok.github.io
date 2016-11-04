@@ -277,8 +277,10 @@ duoshuo_shortname: kcoewoys
 
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters/
+# See: http://zhanzhang.baidu.com/dashboard/index
+
 google_site_verification: PT0ov-1QVIJfUGNxYmTnxSySJRfFNVZFzRbBzI1AZ1I
-baidu-site-verification: f3EvwIt9Sa
+baidu_site_verification: qROxfcsqRO
 
 
 # Google Analytics
