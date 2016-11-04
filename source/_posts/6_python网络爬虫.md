@@ -2,7 +2,7 @@
 title: python网络爬虫
 date: 2016-11-01 12:04:14
 tags: [crawler]
-categoreis: [python,crawler]
+categories: [python,crawler]
 
 ---
 

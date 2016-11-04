@@ -2,7 +2,7 @@
 title: Raspberrypi系统安装
 date: 2016-11-01 09:42:07
 tags: [raspberrypi]
-categoreis: [linux,raspberrypi]
+categories: [linux,raspberrypi]
 
 ---
 
