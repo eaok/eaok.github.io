@@ -13,6 +13,7 @@ categories: [python,crawler]
 ## 安装scrapy
 ### windows平台
 twisted lxml 下载地址: http://www.lfd.uci.edu/~gohlke/pythonlibs/
+<!-- more -->
 ```
 python -m pip install --upgrade pip     #升级pip版本
 pip install C:\Users\Administrator\Downloads\Twisted-16.5.0-cp35-cp35m-win_amd64.whl        #安装twisted
