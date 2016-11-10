@@ -1,4 +1,4 @@
 User-Agent: *
 Allow: /
-Sitemap: http://kcoewoys.com/sitemap.xml
-Sitemap: http://kcoewoys.com/baidusitemap.xml
+Sitemap: http://kcoewoys.top/sitemap.xml
+Sitemap: http://kcoewoys.top/baidusitemap.xml
