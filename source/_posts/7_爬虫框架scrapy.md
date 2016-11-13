@@ -13,6 +13,7 @@ categories: [python,crawler]
 ## 安装scrapy
 ### windows平台
 twisted lxml 下载地址: http://www.lfd.uci.edu/~gohlke/pythonlibs/
+<!-- more -->
 ```
 python -m pip install --upgrade pip     #升级pip版本
 pip install C:\Users\Administrator\Downloads\Twisted-16.5.0-cp35-cp35m-win_amd64.whl        #安装twisted
@@ -101,10 +102,12 @@ text()                  #提取文本
 │   ├── __init__.py
 │   ├── items.py                        #定义要爬取的内容结构
 │   ├── pipelines.py                    #处理提取的内容
+│   ├── __pycache__
 │   ├── settings.py                     #项目的参数设置文件
 │   └── spiders
-│       ├── getimg.py                   #项目的主文件
+│   	├── getimg.py                   #项目的主文件
 │       ├── __init__.py
+│       └── __pycache__
 └── scrapy.cfg                          #项目的配置文件
 ```
 ---
