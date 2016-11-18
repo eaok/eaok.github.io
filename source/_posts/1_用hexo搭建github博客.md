@@ -6,7 +6,6 @@ categories: [linux,hexo]
 
 ---
 
-
 ### 安装hexo
 Hexo官网 https://hexo.io/zh-cn/
 
@@ -14,9 +13,8 @@ Hexo官网 https://hexo.io/zh-cn/
 `npm install hexo-deployer-git --save`
 安装 hexo
 `npm install -g hexo-cli`
-
-### 使用hexo
 <!-- more -->
+### 使用hexo
 #### 生成文件
 `hexo init hexo`
 `cd hexo`

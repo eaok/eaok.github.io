@@ -6,16 +6,14 @@ categories: [linux,online]
 
 ---
 
-
 ### 安装shadowsock
 shadowsock主页 https://github.com/shadowsocks/shadowsocks
 `sudo apt-get update`
 `sudo apt-get install python-gevent python-pip`
 `sudo pip install shadowsocks`
-
+<!-- more -->
 ### 编辑配置文件
 `sudo vi etc/shadow.config`
-<!-- more -->
 ```
 {
 	"server":"47.90.65.76",

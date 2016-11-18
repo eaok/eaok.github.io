@@ -6,14 +6,14 @@ categories: [python,crawler]
 
 ---
 
-
 官方网站：http://scrapy.org/
 官网教程：https://doc.scrapy.org/en/latest/index.html
 中文版：http://scrapy-chs.readthedocs.io/zh_CN/1.0/index.html
+
 ## 安装scrapy
+<!-- more -->
 ### windows平台
 twisted lxml 下载地址: http://www.lfd.uci.edu/~gohlke/pythonlibs/
-<!-- more -->
 ```
 python -m pip install --upgrade pip     #升级pip版本
 pip install C:\Users\Administrator\Downloads\Twisted-16.5.0-cp35-cp35m-win_amd64.whl        #安装twisted
@@ -22,7 +22,6 @@ pip install pypiwin32                   #安装关联模块pypiwin32
 pip install scrapy                      #安装scrapy
 scrapy bench                            #验证Scrapy
 ```
-    
 
 ### ubuntu平台
 ```
@@ -38,7 +37,7 @@ scrapy bench                            #验证Scrapy
 scrapy startproject project                 #创建项目
 scrapy genspider -l                         #查看可用模板
 scrapy genspider -t basic name baidu.com    #依据模板创建文件
-scrapy genspider mydomain mydomain.com	    #创建一个新的spider文件
+scrapy genspider mydomain mydomain.com      #创建一个新的spider文件
 scrapy crawl name --nolog                   #启动spider并不显示log
 scrapy crawl name -o items.json             #保存爬取到的数据
 
@@ -73,7 +72,7 @@ edit          #Edit spider
 list          #List available spiders
 parse         #Parse URL (using its spider) and print the results
 
-scrapy parse <url> [options]	#如果提供 --callback 选项，则使用spider的该方法处理，否则使用 parse 
+scrapy parse <url> [options]	#如果提供 --callback 选项，则使用spider的该方法处理，否则使用 parse
 	--spider=SPIDER:    #跳过自动检测spider并强制使用特定的spider
 	--a NAME=VALUE:     #设置spider的参数(可能被重复)
 	--callback or -c:   #spider中用于解析返回(response)的回调函数
@@ -105,7 +104,7 @@ text()                  #提取文本
 │   ├── __pycache__
 │   ├── settings.py                     #项目的参数设置文件
 │   └── spiders
-│   	├── getimg.py                   #项目的主文件
+│  	├── getimg.py                   #项目的主文件
 │       ├── __init__.py
 │       └── __pycache__
 └── scrapy.cfg                          #项目的配置文件

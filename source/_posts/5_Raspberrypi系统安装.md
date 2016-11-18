@@ -6,14 +6,12 @@ categories: [linux,raspberrypi]
 
 ---
 
-
 ### 安装系统
 系统下载地址 https://www.raspberrypi.org/downloads/
 解压提取出.img文件，再用[Win32DiskImager](https://sourceforge.net/projects/win32diskimager/)工具写到存储卡上。
 在cmd中运行 `arp/a` 查看树莓派的ip 或者用工具`ipscan22`扫描ip地址，得到ip地址后，用putty链接 户名和密码分别为 `pi， raspberry`
-
-### 修改源为阿里云的
 <!-- more -->
+### 修改源为阿里云的
 `deb http://mirrors.aliyun.com/raspbian/raspbian/ jessie main contrib non-free rpi`
 `sudo apt-get update`
 
