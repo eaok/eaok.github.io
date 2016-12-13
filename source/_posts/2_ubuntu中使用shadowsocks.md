@@ -46,7 +46,7 @@ tar zxf LATEST.tar.gz
 cd libsodium*
 ./configure
 make && make install
- 
+
 echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf    # 修复关联
 ldconfig
 ```
@@ -55,7 +55,13 @@ ldconfig
 可以使用的有 **Privoxy Polipo proxychains**，前两者貌似不支持ssh,所以就选择了**proxychains**
 
 * 安装proxychains
-`sudo apt-get install proxychains`
+```
+git clone https://github.com/rofl0r/proxychains-ng
+cd proxychains-ng/
+./configure --prefix=/usr --sysconfdir=/etc
+make && sudo make install
+sudo make install-config
+```
 `sudo vi /etc/proxychains.conf`
 ```
 strict_chain
@@ -65,7 +71,7 @@ tcp_read_time_out 15000
 tcp_connect_time_out 8000j
 localnet 127.0.0.0/255.0.0.0
 quiet_mode
- 
+
 [ProxyList]
 socks5  127.0.0.1 1080
 ```
@@ -74,7 +80,11 @@ socks5  127.0.0.1 1080
 ```
 proxychains bash
 curl ip.gs
-curl www.google.com 
+curl www.google.com
 wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.8.1.tar.xz
 git clone git@github.com:baidu/Paddle.git
 ```
+
+### 在windows的cmd中使用系统代理
+`set http_proxy=http://127.0.0.1:1080`
+

@@ -152,8 +152,8 @@ autocmd             # au 自动执行命令
 syntax on
 
 set nu
-set mouse=a                     "设置鼠标可用
-set pastetoggle=<F12>           "按f12打开或关闭粘贴模式
+set pastetoggle=<F11>           "按f11打开或关闭粘贴模式
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1		"vim 文件编码
 
 " \ should be followed by /, ? or &
 set nocompatible

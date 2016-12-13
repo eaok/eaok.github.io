@@ -98,8 +98,9 @@ except urllib.error.URLError as e:
 ```
 
 ### 获取user-agent
+浏览器查询user-agent 进F12，刷新网页，在network/hearders中可以查看
 chrome查询user-agent  在地址栏中输入：about:version
-firefox查询user-agent 进F12可以查看
+
 通过网址测试查询user-agent： http://www.useragentstring.com/
 
 ### 例1 爬取糗事百科段子：
