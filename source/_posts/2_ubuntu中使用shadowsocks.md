@@ -86,5 +86,10 @@ git clone git@github.com:baidu/Paddle.git
 ```
 
 ### 在windows的cmd中使用系统代理
+gnu wget for windows: https://eternallybored.org/misc/wget/
 `set http_proxy=http://127.0.0.1:1080`
+`set https_proxy=http://127.0.0.1:1080`
+cygwin中使用系统代理
+`export http_proxy=http://127.0.0.1:1080`
+`export https_proxy=http://127.0.0.1:1080`
 
