@@ -16,6 +16,9 @@ Github中ScrapyJS项目：https://github.com/scrapinghub/scrapyjs
 
 ## selenium
 源码地址：https://github.com/SeleniumHQ/selenium
+Selenium with Python：http://selenium-python.readthedocs.io/index.html
+Selenium Documentation：https://seleniumhq.github.io/selenium/docs/api/py/api.html
+
 安装：sudo pip3 install -U selenium -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 ### selenium的方法
@@ -147,8 +150,12 @@ print cookie
 ```
 switch_to_frame("name值")           #有name时用
 switch_to_frame("id值")             #有id时用
+
+switch_to_frame(1)                  #按索引查找，chorme是从0开始
+
 iframe = find_element_by_xpath（'//div[@id="loginDiv"]/iframe')     #通用
 switch_to_frame(iframe)             # 进入iframe
+
 driver.switch_to_default_content()  # 跳出iframe，回到主content
 ```
 
@@ -322,7 +329,8 @@ def work(driver):
     try:
         driver.get_screenshot_as_file("login_before.jpg")
 
-        driver.switch_to_frame('x-URS-iframe')  # 进入到iframe
+        # driver.switch_to_frame('x-URS-iframe')  # 进入到iframe
+        driver.switch_to_frame(1)
         driver.find_element_by_name("email").clear()
         driver.find_element_by_name("email").send_keys("kcoewoys")
 
@@ -343,12 +351,90 @@ def work(driver):
 
 
 if __name__ == "__main__":
-    browser = webdriver.Firefox()
-    # browser = webdriver.PhantomJS()
+    # browser = webdriver.Firefox()
+    browser = webdriver.PhantomJS()
     # browser = webdriver.Chrome()
 
     work(browser)
 
-    browser.close()
     browser.quit()
 ```
+
+### 三种等待方式
+1、强制等待，就是直接用time.sleep()
+2、隐性等待
+如果在规定时间内网页加载完成，则执行下一步，否则一直等到时间截止，再执行下一步。
+`driver.implicitly_wait(30)  # 隐性等待，最长等30秒`
+3、 显性等待
+如果条件成立了，则执行下一步，否则继续等待，直到超过设置的最长时间，然后抛出`TimeoutException`。用到了`WebDriverWait`类与`expected_conditions`模块
+`selenium.webdriver.support.wait.WebDriverWait` 显性等待的类
+```
+__init__(self, driver, timeout, poll_frequency=0.5, ignored_exceptions=None)
+    driver: 传入WebDriver实例
+    timeout: 超时时间（同时要考虑隐性等待时间）
+    poll_frequency: 调用until或until_not中的方法的间隔时间，默认0.5秒
+    ignored_exceptions: 抛出这个元组中的异常，不中断代码继续等待，默认只有 NoSuchElementException。
+untill(self, method, message='')  #当某元素出现或什么条件成立则继续执行
+    method: 在等待期间，每隔一段时间调用这个传入的方法，直到返回值不是False
+    message: 如果超时，抛出TimeoutException，将message传入异常
+until_not(self, method, message='')  #当某元素消失或什么条件不成立则继续执行
+
+#method参数一定要有 __call__() 方法，否则会抛出异常，可以用 expected_conditions 模块中的各种条件，
+#也可以用 WebElement 的 is_displayed() 、is_enabled()、is_selected()方法，或者用自己封装的方法都可以
+#调用方法如下：
+WebDriverWait(driver, 超时时长, 调用频率, 忽略异常).until(可执行方法, 超时时返回的信息)
+```
+`elenium.webdriver.support.expected_conditions` 模块中包含一系列可用于判断的条件
+```
+>>> from selenium.webdriver.support import expected_conditions
+>>> dir(expected_conditions)
+['NoAlertPresentException',
+'NoSuchElementException',
+'NoSuchFrameException',
+'StaleElementReferenceException',
+'WebDriverException',
+
+'alert_is_present',                         #判断是否有alert出现
+'element_located_selection_state_to_be',    #传入locator以及状态，相等返回True，否则返回False
+'element_located_to_be_selected',           #判断元素是否被选中，传入locator元组
+'element_selection_state_to_be',            #传入WebElement对象以及状态，相等返回True，否则返回False
+'element_to_be_clickable',                  #判断元素是否可点击，传入locator
+'element_to_be_selected',                   #判断元素是否被选中，传入WebElement对象
+
+#判断frame是否可切入，可传入locator元组或者直接传入定位方式：id、name、index或WebElement
+'frame_to_be_available_and_switch_to_it',
+
+'new_window_is_opened',
+'number_of_windows_to_be',
+'presence_of_all_elements_located',         #所有符合条件的元素都加载出来才通过
+'presence_of_element_located',              #只要符合一个条件的元素加载出来就通过
+'staleness_of',                             #判断元素是否仍在DOM中，传入WebElement对象，可以判断页面是否刷新
+'text_to_be_present_in_element',            #判断元素的text是否出现某段文本
+'text_to_be_present_in_element_value',      #判断元素的value是否出现某段文本
+'title_contains',                           #title是否包含于driver.title
+'title_is',                                 #title是否等于driver.title
+'invisibility_of_element_located',          #验证元素是否可见，传入参数是元组类型的locator
+'visibility_of',                            #验证元素是否可见，传入WebElement
+'visibility_of_any_elements_located',
+'visibility_of_element_located']            #验证元素是否可见，传入参数是元组类型的locator
+```
+例子：
+```
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+from selenium import webdriver
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.common.by import By
+
+driver = webdriver.Firefox()
+driver.implicitly_wait(10)  # 隐性等待和显性等待可以同时用，但等待的最长时间取两者之中的大者
+driver.get('https://www.baidu.com/')
+locator = (By.LINK_TEXT, 'hao123')
+try:
+    WebDriverWait(driver, 20, 0.5).until(ec.presence_of_element_located(locator))
+    print(driver.find_element_by_link_text('hao123').get_attribute('href'))
+finally:
+    driver.close()
+```
+
