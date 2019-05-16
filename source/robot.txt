@@ -1,4 +1,0 @@
-User-Agent: *
-Allow: /
-Sitemap: http://kcoewoys.top/sitemap.xml
-Sitemap: http://kcoewoys.top/baidusitemap.xml
