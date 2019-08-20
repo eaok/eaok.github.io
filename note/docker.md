@@ -107,10 +107,10 @@ $ docker exec -it app_web_1 rails c
 $ docker exec -it xxx /bin/bash    #进入容器
 
 
-docker start [options] CONTAINER    #停止容器
+docker start [options] CONTAINER    #启动已停止的容器
   -a, --attach        # attach stdout/err
   -i, --interactive   # attach stdin
-$ docker stop [options] CONTAINER   #启动已停止的容器
+$ docker stop [options] CONTAINER   #停止容器
 $ docker kill Name/ID               #强制停止
 $ docker restart Name/ID            # 重启一个正在运行的容器
 
@@ -173,11 +173,39 @@ ENTRYPOINT ["/sbin/tini", "--", "/usr/bin/samba.sh"]
 ```
 #清理容器
 $ docker rm `docker ps -aq`
-docker rm $(docker ps -aq)    #windows端用powershell
+> docker rm $(docker ps -aq)    #windows端用powershell
 #清理未使用的镜像
 $ docker images -q|xargs docker rmi
+> docker rmi $(docker images -q)
 #深度清理image
 $ docker images|sed '1d'|awk '{print $1":"$2}'|xargs docker rmi
+```
+
+eg:
+```
+mysql:
+https://hub.docker.com/_/mysql/
+docker search mysql
+docker pull mysql
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=root -dp 3306:3306 mysql
+docker exec -it mysql /bin/bash
+mysql -uroot -proot 
+
+#解决windows上的连接错误
+alter user 'root'@'%' identified with mysql_native_password BY 'root'; 
+alter user 'root'@'localhost' identified with mysql_native_password BY 'root';
+#修改mysql8的认证方式
+mysql --help | grep "Default options" -A 1 
+vi /etc/mysql/my.cnf
+default-authentication-plugin=mysql_native_password
+
+redis:
+docker run --name redis -dp 6379:6379 redis
+https://hub.docker.com/_/redis
+
+postgres:
+docker run --name postgres -e POSTGRES_PASSWORD=root -dp 5432:5432 postgres
+https://hub.docker.com/_/postgres
 ```
 
 ---

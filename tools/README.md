@@ -14,3 +14,5 @@
 * [凹脑图](https://aonaotu.com)
 * [作业部落](https://www.zybuluo.com)
 * [Typora](https://www.typora.io)
+* [BestTrace](https://www.ipip.net)
+* [slides](https://slides.com)

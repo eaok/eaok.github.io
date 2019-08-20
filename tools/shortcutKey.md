@@ -1,19 +1,14 @@
 ## vscode
 ```
-ctrl + /
-ctrl + f
-ctrl + h
-f12         转到定义
-ctrl + f12  转到实现
-ctrl + p
-shfit + cmd + p 显示所有命令
-cmd + ,
-cmd + enter     换行
-cmd + x         剪切一行
-shift + cmd + k 删除一行
+ctrl + /        注释
+ctrl + f        查找
+ctrl + h        替换
+f12             转到定义
+ctrl + f12      转到实现
+ctrl + enter    换行
+ctrl + x        剪切一行
 alt + ⬆️         向上移动一行
 alt + ⬇️         向下移动一行
-fn + f12        跳转至定义处
 ```
 
 ## atom

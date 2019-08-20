@@ -52,7 +52,8 @@ replace (
      3.require 的包后必须带版本号,replace中可带可不带
 ```
 
----
-参考:
-
-[从gopath到go mod的一次尝试](https://blog.csdn.net/qq_33296108/article/details/88184060)
+go mod 代理
+```
+export GOPROXY=https://mirrors.aliyun.com/goproxy/
+export GOPROXY=https://goproxy.io
+```

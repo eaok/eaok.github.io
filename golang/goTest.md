@@ -150,7 +150,7 @@ func TestAdd_Two(t *testing.T) {
 import (
 	"testing"
 
-	"github.com/bmizerany/assert"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestFibonacciIterative(t *testing.T) {
