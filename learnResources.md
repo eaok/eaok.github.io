@@ -2,10 +2,10 @@
 
 ---
 ## golang
+* [godoc](https://golang.google.cn/)
 * [goCheatSheet](https://devhints.io/go)
 * [Go语言标准库](https://books.studygolang.com/The-Golang-Standard-Library-by-Example/)
 * [Go 标准库中文文档](http://cngolib.com/)
-
 
 ---
 ## python
@@ -13,6 +13,9 @@
 * [Python Cookbook 翻译](https://python3-cookbook.readthedocs.io/zh_CN/latest/)
 * [Google 开源项目Python风格指南](https://zh-google-styleguide.readthedocs.io/en/latest/google-python-styleguide/contents/)
 
+---
+## shell
+* [Google 开源项目Shell风格指南](https://zh-google-styleguide.readthedocs.io/en/latest/google-shell-styleguide/contents/)
 
 ---
 ## git

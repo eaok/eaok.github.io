@@ -1,62 +1,9 @@
----
-title: vim环境配置
-date: 2016-11-18 13:42:43
-tags: vim
-categories: [linux,vim]
-
----
-
 ## 安装vim
 ### 通过包管理安装
-安装add-apt-repository
-`sudo apt-get install software-properties-common python-software-properties`
 
-ubuntu16.04添加ppa源来安装新版vim
-`sudo add-apt-repository ppa:jonathonf/vim`
-`sudo apt-get update`
 `sudo apt-get install vim`
-<!-- more -->
-卸载
-`sudo apt remove vim`
-`sudo add-apt-repository --remove ppa:jonathonf/vim`
 
-### 源码编译安装
-获取源码
-`git clone https://github.com/vim/vim.git`
-
-安装相应的依赖
-```
-sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
-libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
-libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
-python3-dev ruby-dev lua5.1 lua5.1-dev libperl-dev
-```
-
-删除原有vim
-```
-dpkg -l | grep vim
-sudo dpkg -P vim vim-common vim-run
-```
-
-编译源码并安装
-```
-./configure --with-features=huge --enable-multibyte \
---enable-pythoninterp --enable-python3interp --enable-perlinterp --enable-rubyinterp --enable-luainterp \
---enable-gui=gtk2 --enable-cscope \
---with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu \
---with-python3-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu \
---prefix=/usr \
---enable-fail-if-missing
-
-make && sudo make install
-```
-
-设置软连接
-`sudo ln -s /usr/bin/vim /usr/bin/vi`
-`sudo mkdir /etc/vim && sudo touch /etc/vim/vimrc`
-`sudo ln -s /etc/vim/vimrc /usr/share/vim/vimrc`
-
-## vim命令
+### vim命令
 ```
 s   #删除光标所在字符，并进入输入模式
 S   #删除光标所在行，并进入输入模式
@@ -92,6 +39,8 @@ Ctrl + n        #补全单词
 Ctrl + p        #补全单词
 Ctrl + x + l    #补全一行
 Ctrl + x + f    #插入当前目录下文件名
+ctrl + o		#跳到原来的位置
+ctrl + i		#与ctrl+o相反
 
 /string         #向下查找
 ?string         #向上查找
@@ -400,53 +349,8 @@ Ctrl+\ 可以代替 ：cs find
 
 ### vundle
 Vundle地址：https://github.com/VundleVim/Vundle.vim
-安装Vundle
-`git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
-配置Vundle插件`vi ~/.vimrc`
-```
-set nocompatible              " be iMproved, required
-filetype off                  " required
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-
-
-
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-
-" plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
-
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-```
 在vi中执行命令
+
 ```
 :PluginList       - lists configured plugins
 :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -467,3 +371,31 @@ Plugin 'scrooloose/syntastic'
 "PEP8代码风格检查
 Plugin 'nvie/vim-flake8'
 ```
+
+
+
+ctrlp插件使用
+
+```bash
+一旦ctrlp打开了：
+   按F5清除当前目录的缓冲以便获取新文件，移除被删掉的文件以及应用新的忽略选项。
+    按<ctrl-f>和<ctrl-b>在两种模式间循环
+    按<ctrl-d>切换到仅搜索文件名而不是完整路径
+    按<ctrl-r>切换到正则表达式模式
+    使用<ctrl-j>，<ctrl-k>或者方向键在结果列表移动
+    使用<ctrl-t>或<ctrl-v>,<ctrl-x>以新表，新窗口分割方式打开选定项
+    使用<ctrl-n>,<ctrl-p>在历史记录里选择上一项或下一项
+    使用<ctrl-y>来创建新文件和它的父目录
+    使用<ctrl-z>来标记（取消标记）多个文件，使用<ctrl-o>来打开它们
+在ctrlp中执行:help ctrlp-mappings或？获取更多快捷键映射帮助。
+
+    使用两个或多个符号..来升起单层或多层目录树
+
+    使用:25会跳转到打开文件的第25行，当打开多个文件的时候使用:diffthis，会在最开始的4个文件里执行。
+```
+
+
+
+参考：
+
+https://www.cnblogs.com/yangjig/p/6014198.html

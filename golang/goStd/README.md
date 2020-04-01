@@ -1,0 +1,8 @@
+* [`[1]`bufio](golang/goStd/bufio)
+* [`[2]`filepath](filepath)
+* [`[3]`ioutil](ioutil)
+* [`[4]`os](os)
+* [`[5]`strconv](strconv)
+* [`[6]`strings](strings)
+* [`[7]`time](time)
+* [`[8]`url](url)

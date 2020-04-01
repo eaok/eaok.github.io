@@ -19,7 +19,7 @@
 
 * 基本操作:
 
-```shell
+```bash
 sudo npm i docsify-cli -g   #安装
 docsify init ./docs         #初始化文件夹
 docsify serve -p 8890       #开启服务
@@ -27,7 +27,7 @@ docsify serve -p 8890       #开启服务
 
 * 每个页面和URL路径说明：
 
-```shell
+```bash
 #如果你的目录结构如下：
 -| ./
   -| README.md

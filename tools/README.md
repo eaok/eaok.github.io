@@ -8,7 +8,10 @@
 * [Awesome Mac](https://ripperhe.com/awesome-mac-html)
 
 ### 其它
+
+* [regexr在线工具](https://regexr.com/)
 * [ATOOL在线工具](http://www.atool9.com)
+* [carbon代码制作成图片](https://carbon.now.sh/)
 * [ProcessOn](https://www.processon.com)
 * [coggle](https://coggle.it)
 * [凹脑图](https://aonaotu.com)

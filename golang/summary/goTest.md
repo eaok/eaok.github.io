@@ -1,7 +1,7 @@
 # go test
 
 ### 0x00 传统测试
-```golang
+```go
 func TestFib(t *testing.T) {
 	var (
 		in       = 7
@@ -15,7 +15,7 @@ func TestFib(t *testing.T) {
 ```
 
 ### 0x01 表格驱动测试
-```golang
+```go
 func TestFib(t *testing.T) {
 	var fibTests = []struct {
 		in       int // input
@@ -36,7 +36,7 @@ func TestFib(t *testing.T) {
 ```
 
 用插件gotests生成的表格驱动测试
-```golang
+```go
 func Test_fibonacciIterative(t *testing.T) {
 	type args struct {
 		n int
@@ -69,7 +69,7 @@ func Test_fibonacciIterative(t *testing.T) {
 ```
 
 ### 0x02 样本测试
-```golang
+```go
 func ExampleFibonacciIterative() {
 	fmt.Println(fibonacciIterative(4))
 	// Output:
@@ -79,7 +79,7 @@ func ExampleFibonacciIterative() {
 ```
 
 ### 0x03 TestMain
-```golang
+```go
 func TestMain(m *testing.M) {
 	setUp()
 	exitCode := m.Run()
@@ -98,7 +98,7 @@ func tearDown() {
 ```
 
 ### 0x04 基准测试
-```golang
+```go
 func BenchmarkFibonacciIterative(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		fibonacciIterative(10)
@@ -106,7 +106,7 @@ func BenchmarkFibonacciIterative(b *testing.B) {
 }
 ```
 测试更多情况
-```golang
+```go
 
 func BenchmarkFibonacciIterative5(b *testing.B) {
 	benchmarkFibonacciIterative(5, b)
@@ -122,10 +122,67 @@ func benchmarkFibonacciIterative(i int, b *testing.B) {
 }
 ```
 
+
+
+#### 性能测试的结果分析工具 benchstat
+
+benchstat 用于对性能测试的结果进行统计分析，对测量结果进行假设检验，从而消除结果的观测误差；
+
+```bash
+go get golang.org/x/perf/cmd/benchstat
+
+go test -run=none -bench=Benchmarkxxx -count=10 | tee old.txt
+git stash pop
+go test -run=none -bench=Benchmarkxxx -count=10 | tee new.txt
+benchstat old.txt new.txt
+```
+
+
+
+生成编译过程的网页
+
+```bash
+GOSSAFUNC=函数名 go build .
+```
+
+
+
+#### 降低系统噪音工具 perflock
+
+perflock的作用是限制cpu的频率，从而一定程度上消除系统对性能测试的影响，仅支持linux；
+
+```bash
+go get github.com/aclements/perflock/cmd/perflock
+sudo install $GOPATH/bin/perflock /usr/bin/perflock
+sudo -b perflock -daemon
+
+perflock -governor 70% go test -test=none -bench=.
+```
+
+
+
+#### 严肃的性能测试一般流程
+
+1. 限制系统资源，降低测试噪声
+   * 限制cpu时钟频率 perflock
+   * 限制runtime消耗的内存上限 runtime.SetMaxhelp
+   * 关闭无关程序和进程
+
+2. 确定测试代码的正确性
+   * 考虑Goroutine的终止性，当某些并发在基准测试之后，那么结果就不准
+   * 考虑编译器进行了过度优化，或者基准测试代码本身编写错误导致结果不准
+
+3. 实施性能基准测试
+   * 使用benchstat对前后的性能测试进行假设检验
+   * 验证结果的有效性，比如确认结果的波动，比较随时间推移造成的性能回归等等
+
+
+
 ### 0x05 第三方测试库
+
 - [goconvey](https://github.com/smartystreets/goconvey)
 
-```golang
+```go
 import (
 	"testing"
 
@@ -146,7 +203,7 @@ func TestAdd_Two(t *testing.T) {
 
 - [assert](https://github.com/bmizerany/assert)
 
-```golang
+```go
 import (
 	"testing"
 
@@ -162,3 +219,7 @@ func TestFibonacciIterative(t *testing.T) {
 	assert.Equal(t, actual, expected)
 }
 ```
+
+
+
+代码文件：`test_demo`
