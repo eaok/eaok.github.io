@@ -1,17 +1,31 @@
 # 学习之路
-
-> 目标：学习 golang 编程，完成后端工程师学习路线，并给出实践过程，记录知识代码块方便查询。
-
-* [`[7]`goTest](golang/goTest)
-* [`[6]`docker](note/docker)
-* [`[5]`restfulAPI](golang/restfulAPI)
-* [`[4]`go命令连外网方案](note/go命令连外网方案)
-* [`[3]`goMod](golang/goMod)
-* [`[2]`shortcutKey](tools/shortcutKey)
-* [`[1]`docsify](tools/docsify)
+> 本站使用了`docsify`，然后`makefile`会根据文档自动生成相关的`README.md`来完成文档间的跳转；把文档做成类博客，目的是为了尽量简化操作，在这里记录知识，实践过程，总结等等，方便快速查询！
 
 ---
-### [学习资源](learnResources)
+# 参考资源
+## golang
+* [godoc](https://golang.google.cn/)
+* [goCheatSheet](https://devhints.io/go)
+* [Go语言标准库](https://books.studygolang.com/The-Golang-Standard-Library-by-Example/)
+* [Go 标准库中文文档](http://cngolib.com/)
 
 ---
-### [老的笔记](oldNote/)
+## python
+* [Python3 中文手册](https://docs.pythontab.com/python/python3.4/index.html)
+* [Python Cookbook 翻译](https://python3-cookbook.readthedocs.io/zh_CN/latest/)
+* [Google 开源项目Python风格指南](https://zh-google-styleguide.readthedocs.io/en/latest/google-python-styleguide/contents/)
+
+---
+## shell
+* [Google 开源项目Shell风格指南](https://zh-google-styleguide.readthedocs.io/en/latest/google-shell-styleguide/contents/)
+
+---
+## git
+* [Learn Git Branching](https://learngitbranching.js.org/)
+* [Git 使用简明手册](http://opus.konghy.cn/git-guide/)
+* [Git book](https://git-scm.com/book/zh/v2)
+* [git工具 sourcetree](https://www.sourcetreeapp.com/)
+
+---
+## docker
+* [dockerCheatSheet](https://devhints.io/docker)
