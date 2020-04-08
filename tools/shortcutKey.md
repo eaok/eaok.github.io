@@ -49,3 +49,14 @@ ctrl + shift + n
 ctrl + shift + alt + n
 ```
 
+自定义的快捷键
+
+```
+Alt + v			Split Vertically
+Alt + h			Split Horizontally
+Alt + c			Show Usages
+Alt + t			Terminal
+```
+
+
+

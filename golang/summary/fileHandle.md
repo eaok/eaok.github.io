@@ -1,6 +1,6 @@
-# File文件操作
+[toc]
 
-## 一、相关结构体和接口
+# 一、相关结构体和接口
 
 File结构体
 
@@ -35,7 +35,9 @@ type FileInfo interface {
 }
 ```
 
-## 二、文件相关处理
+# 二、文件相关处理
+
+## 2.1 文件目录基本操作
 
 ### 获取文件信息
 
@@ -105,9 +107,9 @@ if err != nil {
 }
 ```
 
-### 读取文件
+## 2.2 读取文件
 
-#### 1.按字节读取
+### 1.按字节读取
 
 该文件必须适合内存，也需要知道文件的大小，以便实例化一个足够大的缓冲区来保存它。
 
@@ -138,7 +140,7 @@ fmt.Println("bytes read: ", bytesread)
 fmt.Println("bytestream to string: ", string(buffer))
 ```
 
-#### 2.以块的形式读取文件
+### 以块的形式读取文件
 
 ```go
 const BufferSize = 100
@@ -167,7 +169,7 @@ for {
 }
 ```
 
-#### 3.同时读取多个文件块
+### 3.同时读取多个文件块
 
 ```go
 const BufferSize = 100
@@ -217,7 +219,7 @@ for i := 0; i < concurrency; i++ {
 wg.Wait()
 ```
 
-#### 4.使用bufio.Scanner
+### 4.使用bufio.Scanner
 
 ```go
 file, err := os.Open("filetoread.txt")
@@ -243,7 +245,7 @@ for _, line := range lines {
 }
 ```
 
-#### 5.使用ioutil中的ReadFile
+### 5.使用ioutil中的ReadFile
 
 ```go
 bytes, err := ioutil.ReadFile("_config.yml")
@@ -257,7 +259,7 @@ fmt.Println("String read: ", string(bytes))
 
 
 
-#### 6.读取文件中指定位置字符
+### 6.读取文件中指定位置字符
 
 ```go
 fileName := "C:\\Users\\Administrator\\go\\src\\package\\a.txt"
@@ -275,9 +277,9 @@ fmt.Println(string(bs))
 
 
 
-### 文件复制
+## 2.3 文件复制
 
-#### 使用io包的Read和Write
+### 使用io包的Read和Write
 
 ```go
 func copyFile1(srcFile, desFile string) (int, error) {
@@ -312,7 +314,7 @@ func copyFile1(srcFile, desFile string) (int, error) {
 }
 ```
 
-#### 使用io包中的Copy方法
+### 使用io包中的Copy方法
 
 ```go
 func copyFile2(srcFile, desFile string) (int64, error) {
@@ -331,7 +333,7 @@ func copyFile2(srcFile, desFile string) (int64, error) {
 }
 ```
 
-#### 使用ioutil包的ReadFile和WriteFile
+### 使用ioutil包的ReadFile和WriteFile
 
 由于使用一次性读取写入，不适用大文件，容易内存溢出。
 
@@ -350,7 +352,7 @@ func copyFile3(srcFile, desFile string) (int, error) {
 }
 ```
 
-## 三、断点续传
+# 三、断点续传
 
 ```go
 func loadFile(srcFile, desFile string) {
@@ -410,6 +412,6 @@ func main() {
 
 
 
-json文件处理
+# 四、json文件处理
 
-xlsx表格处理
+# 五、xlsx表格处理

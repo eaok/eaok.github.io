@@ -27,7 +27,7 @@ docker-compose version
 
 ## docker-compose命令
 
-#### docker-compose up
+### docker-compose up
 
 ```bash
 docker-compose up [options] [--scale SERVICE=NUM...] [SERVICE...]
@@ -44,7 +44,7 @@ docker-compose up [options] [--scale SERVICE=NUM...] [SERVICE...]
 –remove-orphans 删除服务中没有在compose文件中定义的容器
 ```
 
-#### docker-compose down
+### docker-compose down
 
 ```bash
 docker-compose down [options]
@@ -57,7 +57,7 @@ docker-compose down
 停用移除所有容器以及网络相关
 ```
 
-#### docker-compose bulid
+### docker-compose bulid
 
 ```bash
 docker-compose build [options] [--build-arg key=val...] [SERVICE...]
@@ -175,8 +175,6 @@ networks:
 
 
 
-
-
 ## docker-compose模板文件示例
 
 下面`docker-compose.yml`文件指定了3个web服务：
@@ -253,3 +251,69 @@ Dockerfile由一行行命令语句组成，并且支持用“#”开头作为注
 https://www.cnblogs.com/minseo/p/11548177.html
 
 https://docs.docker.com/compose/compose-file/#network-configuration-reference
+
+
+
+
+
+# 自定义网络
+
+
+
+使用docker创建 macvlan 网络
+
+```bash
+#创建 macvlan 网络
+docker network create -d macvlan  --subnet=172.16.0.0/19 --gateway=172.16.0.1 -o parent=eth0 gitlab-net
+
+#查看
+docker network ls
+
+#创建容器指定网络
+docker run --net=gitlab-net --ip=172.16.0.170  -dt --name test dogo:alpine
+
+#删除全部未使用的网络
+docker network prune
+```
+
+docker-compose中指定
+
+```yaml
+version: '3'
+services:
+   nginx:
+      image: nginx:1.13.12
+      container_name: nginx
+      networks:
+         extnetwork:
+            ipv4_address: 172.19.0.2
+ 
+networks:
+   extnetwork:
+      ipam:
+         config:
+         - subnet: 172.19.0.0/16
+           gateway: 172.19.0.1
+```
+
+
+
+win10添加路由映射
+
+```bash
+#查看路由表
+route print
+
+#添加路由
+route -p add 172.19.0.0/16 10.0.75.2
+
+#重新ping容器地址
+ping 172.17.0.2
+
+#删除路由：
+route delete 172.18.12.0
+
+#最新版有bug，这种方法无效
+#https://www.cnblogs.com/brock0624/p/9788710.html
+```
+

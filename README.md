@@ -4,10 +4,21 @@
 ---
 # 参考资源
 ## golang
-* [godoc](https://golang.google.cn/)
-* [goCheatSheet](https://devhints.io/go)
-* [Go语言标准库](https://books.studygolang.com/The-Golang-Standard-Library-by-Example/)
+
+分享活动
+* [Go 夜读](https://github.com/talk-go/night)
+
+文档
+* [golang.google.cn](https://golang.google.cn/)
 * [Go 标准库中文文档](http://cngolib.com/)
+
+书籍
+* [Go语言101](https://gfw.go101.org/article/101.html)
+* [Go 语言设计与实现](https://draveness.me/golang/)
+* [Go语言标准库](https://books.studygolang.com/The-Golang-Standard-Library-by-Example/)
+* [build-web-application-with-golang](https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/preface.md)
+
+
 
 ---
 ## python

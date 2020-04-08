@@ -118,6 +118,14 @@ node2   Ready    master   16m   v1.14.9
 
 
 
+# 0x03 minikube
+
+minikube是一款快速在本地笔记本电脑上开启一个虚拟机搭建kubernets单节点kubernetes集群的工具；
+
+[Install Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
+
+[Minikube的安装](https://yq.aliyun.com/articles/691500)
+
 
 
 参考

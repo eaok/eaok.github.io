@@ -1,5 +1,6 @@
 - [docker/k8s](docker/k8s)
 - [docker/kafka](docker/kafka)
+- [docker/docker镜像优化](docker/docker镜像优化)
 - [docker/etcd](docker/etcd)
 - [docker/docker-compose](docker/docker-compose)
 - [docker/istio](docker/istio)

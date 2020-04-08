@@ -1,4 +1,8 @@
+- [tools/wintools](tools/wintools)
+- [tools/cobra](tools/cobra)
 - [tools/tmux](tools/tmux)
+- [tools/makefile](tools/makefile)
 - [tools/shortcutKey](tools/shortcutKey)
+- [tools/golangci-lint](tools/golangci-lint)
 - [tools/iterm2](tools/iterm2)
 - [tools/docsify](tools/docsify)

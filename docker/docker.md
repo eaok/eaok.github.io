@@ -35,7 +35,7 @@ docker cli 的命令主要围绕这四个命令展开：
 
 **ubuntu**
 
-`$ sudo apt-get update`     
+`$ sudo apt-get update` 
 `$ sudo apt-get install docker-ce docker-ce-cli containerd.io`
 
 安装文档地址：https://docs.docker.com/install/linux/docker-ce/ubuntu/
@@ -194,7 +194,7 @@ Dockerfile由一行行命令语句组成，并且支持用“#”开头作为注
 
 ### Dockerfile指令
 
-```bash
+```dockerfile
 FROM			#基础镜像
 MAINTAINET		#指定维护者信息
 ENV				#指定环境变量
@@ -218,7 +218,7 @@ ONBUILD			#配置当所创建的镜像作为其它新创建镜像的基础镜像
 
 **CMD和ENTRYPOINT**
 
-```bash
+```dockerfile
 #CMD有三种用法：
 CMD ["executable","param1","param2"] (exec form, this is the preferred form)
 CMD ["param1","param2"] (as default parameters to ENTRYPOINT)
@@ -250,7 +250,7 @@ docker build . -t my:1.0 -f Dockerfile    #构建容器
 
 `Dockerfile`文件：
 
-```bash
+```dockerfile
 FROM alpine
 MAINTAINER David Personette <dperson@gmail.com>
 
@@ -292,7 +292,58 @@ $ docker images -q|xargs docker rmi
 > docker rmi $(docker images -q)
 #深度清理image
 $ docker images|sed '1d'|awk '{print $1":"$2}'|xargs docker rmi
+
+docker image prune	#删除临时镜像
+#-f 强制删除；
+#-a 删除所有没有用到的镜像
 ```
+
+## docker镜像过滤查询
+
+```bash
+docker images -f "dangling=true"	#找出tag为<none>的
+docker images -f "dangling=true" -q	#找出tag为<none>的, 只返回image id
+
+#根据repository名称和tag模糊过滤，我验证时，如果repository有/或小数点符号，通过*是无法匹配的
+docker images --filter=reference='busy*:*libc'
+
+#使用before或since根据时间查找，实际上以repository的名字作为时间分隔，
+docker images -f "before=image1"
+docker images -f "since=image3"
+
+#此外还有label, label=<key> or label=<key>=<value>
+docker images --filter "label=com.example.version"
+```
+
+## docker格式化输出
+
+--format和go模板搭配可以格式化输出，支持的列名如下：
+
+```bash
+--format="TEMPLATE"
+Pretty-print containers using a Go template.
+Valid placeholders:
+.ID - Container ID
+.Image - Image ID
+.Command - Quoted command
+.CreatedAt - Time when the container was created.
+.RunningFor - Elapsed time since the container was started.
+.Ports - Exposed ports.
+.Status - Container status.
+.Size - Container disk size.
+.Names - Container names.
+.Labels - All labels assigned to the container.
+.Label - Value of a specific label for this container. For example {{.Label "com.docker.swarm.cpu"}}
+.Mounts - Names of the volumes mounted in this container.
+```
+
+例如：
+
+```bash
+docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
+```
+
+
 
 ## 应用记录
 

@@ -1,5 +1,6 @@
 - [golang/ORM](golang/ORM)
 - [golang/golang编程规范](golang/golang编程规范)
+- [golang/go内存](golang/go内存)
 - [golang/goMod](golang/goMod)
 - [golang/goWeb/web](golang/goWeb/web)
 - [golang/goWeb/TCPIP协议](golang/goWeb/TCPIP协议)
@@ -30,3 +31,4 @@
 - [golang/summary/defer](golang/summary/defer)
 - [golang/summary/fileHandle](golang/summary/fileHandle)
 - [golang/summary/basicGolang](golang/summary/basicGolang)
+- [golang/summary/arithmetic](golang/summary/arithmetic)

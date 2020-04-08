@@ -10,7 +10,7 @@ Go的官网地址：https://golang.org	https://golang.google.cn
 
 开源包的文档：https://godoc.org
 
-#### **whindows中安装：**
+#### whindows中安装：
 
 直接安装 go1.13.5.windows-amd64.msi
 
@@ -25,7 +25,7 @@ PATH %GOROOT%\bin
 GOPROXY https://mirrors.aliyun.com/goproxy/
 ```
 
-#### **linux中安装：**
+#### linux中安装：
 
 ```bash
 sudo tar xvzf go1.13.5.linux-amd64.tar.gz -C /usr/local/
@@ -38,14 +38,14 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export GOPROXY=https://mirrors.aliyun.com/goproxy/
 ```
 
-#### **mac中安装**
+#### mac中安装
 
 ```bash
 vi .bash_profile
 export GOPATH=/Users/GoWork/Public:/Users/GoWork/Company
 ```
 
-#### **从源码安装**
+#### 从源码安装
 
 ```bash
 git clone git@github.com:golang/go.git
@@ -65,7 +65,7 @@ export PATH=$PATH:/source/go/bin
 export GOPATH=/home/pi/golang
 ```
 
-#### **Go 语言开发工具:**
+#### Go 语言开发工具:
 
 * 1 goland
 

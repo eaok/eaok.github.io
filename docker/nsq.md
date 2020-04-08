@@ -226,6 +226,7 @@ $ nsqd -max-msg-size=50000000
 nsqd监听了两个端口
 
 **4151** HTTP Producer使用**HTTP协议**的curl等工具生产数据；Consumer使用**HTTP协议**的curl等工具消费数据；
+
 **4150** TCP Producer使用**TCP协议**的nsq-j等工具生产数据；Consumer使用**TCP协议**的nsq-j等工具消费数据；
 
 ```bash
@@ -247,6 +248,7 @@ $ nsqlookupd
 nsqlookupd会监听两个端口： 
 
 **4160** TCP 用于接收nsqd的广播，记录nsqd的地址以及监听TCP/HTTP端口等。
+
 **4161** HTTP 用于接收客户端发送的管理和发现操作请求(增删话题,节点等管理查看性操作等)。当Consumer进行连接时，返回对应存在Topic的nsqd列表。
 
 
