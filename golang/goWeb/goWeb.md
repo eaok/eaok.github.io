@@ -763,7 +763,7 @@ t.ExecuteTemplate(w, "t2.html", "Hello World!") //执行t2模板
 
 ### 模板中的动作
 
-![](http://kcoewoys.maser.top/go/templateAction.png)
+![](https://cdn.jsdelivr.net/gh/eaok/img/web/goweb/templateAction.png)
 
 ### 模板自定义函数
 

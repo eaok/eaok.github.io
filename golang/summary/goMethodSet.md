@@ -4,11 +4,11 @@
 
 值赋给接口
 
-![](http://blog.maser.top/images/valueAssignment.jpg)
+![](https://cdn.jsdelivr.net/gh/eaok/img/golang/valueAssignment.jpg)
 
 指针赋给接口
 
-![](http://blog.maser.top/images/pointerAssignment.jpg)
+![](https://cdn.jsdelivr.net/gh/eaok/img/golang/pointerAssignment.jpg)
 
 ## 通过接口调用
 

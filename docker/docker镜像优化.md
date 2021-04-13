@@ -87,7 +87,7 @@ RuN apk del .build
 
 
 
-## multistage build
+## 多阶段构建
 
 Multi-stage build 即在一个 Dockerfile 中使用多个 FROM 指令，每个 FROM 指令可以使用不同的基础镜像，并且每一个都开启新的构建阶段，最终只留下需要的东西。
 
@@ -108,6 +108,24 @@ CMD ["/home/docker/dogo"]
 ```
 
 
+
+## 使用docker-slim工具
+
+[docker-slim](https://github.com/docker-slim/docker-slim)通过静态分析跟动态分析来实现镜像的缩小，在没有修改镜像内容前提下，可以缩小30倍。
+
+**静态分析**
+通过docker镜像自带镜像历史信息,获取生成镜像的dockerfile文件及相关的配置信息。
+
+**动态分析**
+通过内核工具ptrace(跟踪系统调用)、pevent(跟踪文件或目录的变化)、fanotify(跟踪进程)解析出镜像中必要的文件和文件依赖，将对应文件组织成新镜像。
+
+
+
+例如：
+
+```bash
+docker-slim build --http-probe image:tag
+```
 
 
 

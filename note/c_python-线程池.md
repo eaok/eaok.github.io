@@ -12,7 +12,7 @@ categories: [python, syntax]
 4、请求队列（RequestQueue）,用于存放和提取请求
 5、结果队列（ResultQueue）,用于存储请求执行后返回的结果
 <!-- more -->
-![线程池工作模型](http://blog.maser.top/thread_pool.png)
+![线程池工作模型](https://cdn.jsdelivr.net/gh/eaok/img/note/thread_pool.png)
 
 ## 用python自己实现
 ```

@@ -63,10 +63,11 @@ deploy:
 ```
 #### 绑定域名
 先到阿里云上申请一个域名，top域名第一年只要2块钱，解析设置如图：
-![万网解析设置](http://blog.maser.top/%E4%B8%87%E7%BD%91%E8%A7%A3%E6%9E%90%E8%AE%BE%E7%BD%AE.png)
+![万网解析设置](https://cdn.jsdelivr.net/gh/eaok/img/note/%E4%B8%87%E7%BD%91%E8%A7%A3%E6%9E%90%E8%AE%BE%E7%BD%AE.png)
 github实现域名绑定，需要在项目根目录有一个CNAME文件，为此，在hexo/source/下新建一个CNAME文件，内容为你要绑定的域名。
 coding实现域名绑定，需要到项目里面进行设置，如图：
-![coding page 设置](http://blog.maser.top/coding%20page%20%E8%AE%BE%E7%BD%AE.png)
+![coding page 设置](https://cdn.jsdelivr.net/gh/eaok/img/note/coding%20page%20%E8%AE%BE%E7%BD%AE.png)
+
 #### git管理
 新建一个hexo分支，用于保存源文件，并将github上的hexo分支设为默认分支;
 git clone默认会把远程仓库整个给clone下来,但只会在本地默认创建一个默认分支
@@ -95,6 +96,7 @@ next\source\css\_common\components\highlight\theme.styl #修改代码主题
 ```
 **添加背景动画**
 编辑`next/layout/_layout.swig`，在`</body>`标签上方添加
+
 ```
 <script type="text/javascript" color="20,20,20" opacity='0.6' zIndex="-2" count="100" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 ```

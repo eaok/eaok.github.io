@@ -9,3 +9,6 @@
 # 三、企业中日志解决方案
 
 ELK(Elasticsearch、Logstash、Kibana) Filebeat、 json格式日志
+
+
+

@@ -44,7 +44,7 @@ body {background-image:url("images/back40.gif");}
 
 CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明:
 
-![](http://blog.maser.top/web/css/cssSyntax.jpg)
+![](https://cdn.jsdelivr.net/gh/eaok/img/web/css/cssSyntax.jpg)
 
 ## 选择器
 

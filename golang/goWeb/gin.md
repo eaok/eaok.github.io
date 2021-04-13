@@ -826,7 +826,7 @@ func main() {
 	router := gin.Default()
 
 	//把images映射到static文件系统
-	router.Static("/static", "images")
+	router.Static("static", "images")
 	tmpl := `<img src="static/strawberry.jpg" alt="" width="400">`
 	t := template.New("tmpl.html")
 	router.SetHTMLTemplate(template.Must(t.Parse(tmpl)))

@@ -21,13 +21,13 @@ a，设置安全策略组时选择一个已经存在的安全策略组。实例�
 b，在“ Select an existing key pair or create a new key pair ”页面选“Create a new key pair”创建ssh用的key文件，创建之后务必要“Download Key Pair”，下载生成的key；
 
 c，注意：如果在“Instances”页面看到多于一个instance，你一定要stop甚至terminate多于一个的，不然你将面临计费风险；
-![aws创建实例](http://blog.maser.top/aws%E5%88%9B%E5%BB%BA%E5%AE%9E%E4%BE%8B.gif)
+![aws创建实例](https://cdn.jsdelivr.net/gh/eaok/img/note/aws%E5%88%9B%E5%BB%BA%E5%AE%9E%E4%BE%8B.gif)
 
 ### 连接EC2云计算服务器
 在 Host Name (主机名) 框中，输入 user_name@public_dns_name。
 `ubuntu@ec2-35-160-120-14.us-west-2.compute.amazonaws.com`
 在putty中，connection|ssh|auth 下面选择puttygen转换后的key
-![用putty连接](http://blog.maser.top/%E7%94%A8putty%E8%BF%9E%E6%8E%A5.gif)
+![用putty连接](https://cdn.jsdelivr.net/gh/eaok/img/note/%E7%94%A8putty%E8%BF%9E%E6%8E%A5.gif)
 
 ### 使用ip和密码登陆Amazon EC2
 ```
@@ -39,12 +39,13 @@ sudo service sshd restart
 su root
 passwd ubuntu
 ```
-![用ip和密码登录](http://blog.maser.top/%E7%94%A8ip%E5%92%8C%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95.gif)
+![用ip和密码登录](https://cdn.jsdelivr.net/gh/eaok/img/note/%E7%94%A8ip%E5%92%8C%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95.gif)
 
 ### 解决键盘延迟
 1、把实例建在延迟较小的区域，推荐一个网站专门看延迟：http://www.cloudping.info/
 2、更改端口号
 3、使用[mosh](https://mosh.org/)
+
 ```
 sudo apt-get install mosh
 #两端都要安装，详情见官网

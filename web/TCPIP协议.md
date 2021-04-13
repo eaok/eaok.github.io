@@ -1,6 +1,6 @@
 TCP/IP协议的基本框架：
 
-![](http://blog.maser.top/web/tcpip.png)
+![](https://cdn.jsdelivr.net/gh/eaok/img/web/tcpip/tcpip.png)
 
 TCP/IP按照层次从上至下分为四层：
 
@@ -13,7 +13,7 @@ TCP/IP按照层次从上至下分为四层：
 
 ## TCP三次握手
 
-![](http://blog.maser.top/web/tcp/tcpThreeHandshake.png)
+![](https://cdn.jsdelivr.net/gh/eaok/img/web/tcpip/tcpThreeHandshake.png)
 
 - **1**）第一次握手：**A的TCP客户进程也是首先创建传输控制块TCB，然后向B发出连接请求报文段，（首部的**同步位SYN=1**，**初始序号seq=x）**，（SYN=1的报文段不能携带数据）但要消耗掉一个序号，此时TCP客户进程进入SYN-SENT（同步已发送）状态。
 - **2**）第二次握手：**B收到连接请求报文段后，如同意建立连接，则向A发送确认，在确认报文段中（**SYN=1，ACK=1，确认号ack=x+1，初始序号seq=y**），测试TCP服务器进程进入SYN-RCVD（同步收到）状态；
@@ -29,7 +29,7 @@ TCP/IP按照层次从上至下分为四层：
 
 ## TCP四次挥手
 
-![](http://blog.maser.top/web/tcp/tcpFourWave.png)
+![](https://cdn.jsdelivr.net/gh/eaok/img/web/tcpip/tcpFourWave.png)
 
 - 1）A的应用进程先向其TCP发出连接释放报文段（**FIN=1，序号seq=u**），并停止再发送数据，主动关闭TCP连接，进入FIN-WAIT-1（终止等待1）状态，等待B的确认。
 - 2）B收到连接释放报文段后即发出确认报文段，（**ACK=1，确认号ack=u+1，序号seq=v**），B进入CLOSE-WAIT（关闭等待）状态，此时的TCP处于半关闭状态，A到B的连接释放。

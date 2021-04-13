@@ -18,7 +18,7 @@ docker是一个基于go语言的开源的应用容器引擎，可以让开发者
 
 docker 采用典型的 C/S 架构，你安装 docker 软件。默认会在本机启动一个守护进程 docker daemon ， 同时提供一个命令行客户端 docker cli . 你可以使用命令行操作包括：镜像、容器等各种资源。
 
-![](http://blog.maser.top/web/docker/dockerFramework.jpg)
+![](https://cdn.jsdelivr.net/gh/eaok/img/docker/dockerFramework.jpg)
 
 
 
@@ -28,6 +28,17 @@ docker cli 的命令主要围绕这四个命令展开：
 - docker container // 操作容器
 - docker network // 操作网络
 - docker volume // 操作数据卷
+
+
+
+仓库注册中心（Registry）分私有和公有两种形式，公有的有
+
+| 源                                                 | 镜像                                                         |
+| -------------------------------------------------- | ------------------------------------------------------------ |
+| Docker Hub(http://docker.io)                       | http://f1361db2.m.daocloud.io<br>https://dd31kyx9.mirror.aliyuncs.com |
+| Google container registry(http://gcr.io)           |                                                              |
+| k8s.gcr.io(等同于 http://gcr.io/google-containers) | googlecontainersmirror                                       |
+| Red Hat运营的镜像库(http://quay.io)                | http://quay-mirror.qiniu.com                                 |
 
 
 
@@ -47,6 +58,8 @@ docker cli 的命令主要围绕这四个命令展开：
 **mac/windows**
 
 下载安装包安装：https://www.docker.com/products/docker-desktop
+
+win10：https://www.cnblogs.com/360linux/p/13662355.html
 
 
 
@@ -107,9 +120,10 @@ $ docker history image_name       #显示一个镜像的历史
 #启动容器
 docker run [options] xxx            #新建并运行容器
 -d:让容器在后台运行
--P:指定端口映射
+-P:指定端口映射,主机端口:容器端口
 -t:在新容器内指定一个伪终端或终端。
 -i:允许你对容器内的标准输入 (STDIN) 进行交互。
+-v:指定映射的目录
 $ docker run -dp 90:80 nginx       #访问localhost:90
 $ docker run image_name echo "hello word"
 $ docker run -it image_name /bin/bash
@@ -164,13 +178,27 @@ docker container kill Name/ID   #杀掉进程
 docker container logs Name/ID   #查看容器的日志
 ```
 
+复制文件
+
+```bash
+#从主机复制文件到容器内
+docker cp /root/home/test.go ubuntu:/usr/local
+
+#从容器复制文件到主机
+docker cp ubuntu:/usr/local/test.go /root/home
+```
+
 # 0x05 创建镜像
+
 ## 1. 从已经创建的容器中更新镜像
 
 ```bash
 #保存和加载镜像
 $docker save image_name -o file_path    # 保存镜像到一个tar包
+$docker save imageId > xx.tar.gz
 $docker load -i file_path               # 加载一个tar包格式的镜像
+$docker load < xx.tar.gz
+
 $docker push new_image_name             # 发布docker镜像
 $docker tag dperson/samba:latest samba:me    #从已有的镜像上增加
 
@@ -349,8 +377,6 @@ docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports
 
 ```bash
 mysql:
-https://hub.docker.com/_/mysql/
-docker search mysql
 docker pull mysql
 docker run --name mysql -e MYSQL_ROOT_PASSWORD=root -dp 3306:3306 --restart=always mysql
 docker exec -it mysql /bin/bash mysql -uroot -proot 

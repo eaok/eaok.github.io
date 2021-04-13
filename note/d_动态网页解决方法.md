@@ -22,7 +22,7 @@ Selenium Documentation：https://seleniumhq.github.io/selenium/docs/api/py/api.h
 安装：sudo pip3 install -U selenium -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 ### selenium的方法
-![](http://blog.maser.top/selenum.png)
+![](https://cdn.jsdelivr.net/gh/eaok/img/note/selenum.png)
 ```
 >>> from selenium import webdriver
 >>> dir(webdriver.PhantomJS)

@@ -112,4 +112,4 @@ text()                  #提取文本
 ---
 
 **scrapy data flow**
-![scrapy data flow](http://blog.maser.top/scrapy_architecture.png)
+![scrapy data flow](https://cdn.jsdelivr.net/gh/eaok/img/note/scrapy_architecture.png)

@@ -29,6 +29,7 @@
 ---
 ## shell
 * [Google 开源项目Shell风格指南](https://zh-google-styleguide.readthedocs.io/en/latest/google-shell-styleguide/contents/)
+* [Bash 脚本教程](https://wangdoc.com/bash/intro.html)
 
 ---
 ## git

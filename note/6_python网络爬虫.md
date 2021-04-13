@@ -7,10 +7,11 @@ categories: [python,crawler]
 ---
 
 ### 网络爬虫基本原理
-![python爬虫](http://blog.maser.top/python%E7%88%AC%E8%99%AB.png)
+![python爬虫](https://cdn.jsdelivr.net/gh/eaok/img/note/python%E7%88%AC%E8%99%AB.png)
 robots协议用来告知搜索引擎哪些页面能被抓取，哪些页面不能被抓取，结构可以参考: http://www.robotstxt.org/orig.html
 <!-- more -->
 例如淘宝网页的robots协议：
+
 ```
 https://www.taobao.com/robots.txt
 User-agent: Baiduspider

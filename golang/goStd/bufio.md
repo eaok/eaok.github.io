@@ -10,7 +10,7 @@ io操作本身的效率并不低，低的是频繁访问本地磁盘的文件。
 
 bufio封装了io.Reader和io.Writer接口对象，并创建另一个也实现了该接口的对象，io.Reader和io.Writer接口实现了read()和write()方法，对于实现了这个接口的对象都可以使用这两个方法。
 
-![](http://kcoewoys.maser.top/goStandardLibrary/bufio_%E5%8E%9F%E7%90%86.png)
+![](https://cdn.jsdelivr.net/gh/eaok/img/golang/goStandardLibrary/bufio_%E5%8E%9F%E7%90%86.png)
 
 Reader对象
 

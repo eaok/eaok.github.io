@@ -1,13 +1,13 @@
-# JWT
+[toc]
 
-JSON Web Token (JWT)是一个开放标准(RFC 7519)，它定义了一种紧凑的、自包含的方式，用于作为JSON对象在各方之间安全地传输信息。该信息可以被验证和信任，因为它是数字签名的。
+>  JSON Web Token (JWT)是一个开放标准(RFC 7519)，它定义了一种紧凑的、自包含的方式，用于作为JSON对象在各方之间安全地传输信息。该信息可以被验证和信任，因为它是数字签名的。
 
-## 一、JWT应用场景
+# 一、JWT应用场景
 
 - **Authorization** (授权) : 这是使用JWT的最常见场景。一旦用户登录，后续每个请求都将包含JWT，允许用户访问该令牌允许的路由、服务和资源。单点登录是现在广泛使用的JWT的一个特性，因为它的开销很小，并且可以轻松地跨域使用。
 - **Information Exchange** (信息交换) : 对于安全的在各方之间传输信息而言，JSON Web Tokens无疑是一种很好的方式。因为JWTs可以被签名，例如，用公钥/私钥对，你可以确定发送人就是它们所说的那个人。另外，由于签名是使用头和有效负载计算的，您还可以验证内容没有被篡改。
 
-### 跨域认证的问题
+## 跨域认证的问题
 
 举例来说，A 网站和 B 网站是同一家公司的关联服务。现在要求，用户只要在其中一个网站登录，再访问另一个网站就会自动登录，请问怎么实现？
 
@@ -17,17 +17,25 @@ JSON Web Token (JWT)是一个开放标准(RFC 7519)，它定义了一种紧凑�
 
 
 
-## 二、JWT的结构
+## jwt和session的选型
+
+对于只需要登录用户并访问存储在站点数据库中的信息的中小型网站来书，session cookies通常就能满足；
+
+如果站点需要处理大量请求，或者有很多第三方(包括位于不同域的api)，则jwt更合适；
+
+
+
+# 二、JWT的结构
 
 JWT主要由三个部分组成：头部(HEADER)，载荷(PAYLOAD)，签证(SIGNATURE)。
 
-![](http://blog.maser.top/web/jwt/jwtComposition.png)
+![](https://cdn.jsdelivr.net/gh/eaok/img/web/jwt/jwtComposition.png)
 
-### 头部(HEADER)
+## 头部(HEADER)
 
 HEADER主要为了描述该JWT的最基本信息，主要包含两个部分：声明加密算法和声明类型
 
-### 载荷(PAYLOAD)
+## 载荷(PAYLOAD)
 
 载荷用来存放实际需要传递的数据，JWT 规定了7个官方字段，供选用
 
@@ -53,7 +61,7 @@ jti (JWT ID)：编号
 
 JWT 默认是不加密的，任何人都可以读到，所以不要把秘密信息放在这个部分。
 
-### 签证(SIGNATURE )
+## 签证(SIGNATURE )
 
 Signature 部分是对前两部分的签名，防止数据篡改。首先，需要指定一个密钥（secret）。这个密钥只有服务器才知道，不能泄露给用户。然后，使用 Header 里面指定的签名算法签名。算出签名以后，把 Header、Payload、Signature 三个部分拼成一个字符串，每个部分之间用"点"（`.`）分隔，就可以返回给用户。
 
@@ -63,13 +71,15 @@ Base64URL算法跟 Base64 算法基本类似，但有一些小的不同。
 
 JWT 作为一个令牌（token），有些场合可能会放到 URL（比如 api.example.com/?token=xxx）。Base64 有三个字符`+`、`/`和`=`，在 URL 里面有特殊含义，所以要被替换掉：`=`被省略、`+`替换成`-`，`/`替换成`_` 。
 
-## 三、JWT 的使用方式
 
-### JWT架构图
 
-![](http://blog.maser.top/web/jwt/jwtArchitecture.png)
+# 三、JWT 的使用方式
 
-### JWT的使用
+## JWT架构图
+
+![](https://cdn.jsdelivr.net/gh/eaok/img/web/jwt/jwtArchitecture.png)
+
+## JWT的使用
 
 客户端收到服务器返回的 JWT，可以储存在 Cookie 里面，也可以储存在 localStorage。
 
@@ -81,7 +91,7 @@ JWT 作为一个令牌（token），有些场合可能会放到 URL（比如 api
 
 另一种做法是，跨域的时候，JWT 就放在 POST 请求的数据体里面。
 
-### JWT 的几个特点
+## JWT 的几个特点
 
 1. JWT 默认是不加密，但也是可以加密的。生成原始 Token 以后，可以用密钥再加密一次。
 2. JWT 不加密的情况下，不能将秘密数据写入 JWT。
@@ -90,7 +100,9 @@ JWT 作为一个令牌（token），有些场合可能会放到 URL（比如 api
 5. JWT 本身包含了认证信息，一旦泄露，任何人都可以获得该令牌的所有权限。为了减少盗用，JWT 的有效期应该设置得比较短。对于一些比较重要的权限，使用时应该再次对用户进行认证。
 6. 为了减少盗用，JWT 不应该使用 HTTP 协议明码传输，要使用 HTTPS 协议传输。
 
-## 四、JWT各语言的库
+
+
+# 四、JWT各语言的库
 
 python
 

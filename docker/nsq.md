@@ -20,7 +20,7 @@ nsq是Go语言编写的一个开源的实时分布式内存消息队列，其性
 
    将一个流程加入一层数据接口拆分成两个部分，上游专注通知，下游专注处理，将不同的业务逻辑解耦，降低系统间的耦合，提高系统的健壮性。
 
-   ![](http://blog.maser.top/micro/application_decoupling.png)
+   ![](https://cdn.jsdelivr.net/gh/eaok/img/micro/application_decoupling.png)
 
    
 
@@ -28,13 +28,13 @@ nsq是Go语言编写的一个开源的实时分布式内存消息队列，其性
 
    上游发送消息以后可以马上返回，处理工作交给下游进行，把业务流程中的非关键流程异步化，可以显著降低业务请求的响应时间。
 
-   ![](http://blog.maser.top/micro/asynchronous_processing.png)
+   ![](https://cdn.jsdelivr.net/gh/eaok/img/micro/asynchronous_processing.png)
 
 3. 流量削峰
 
    消息队列有很好的缓冲削峰作用，保证后端服务的稳定性。
 
-   ![](http://blog.maser.top/micro/traffic_buffer.png)
+   ![](https://cdn.jsdelivr.net/gh/eaok/img/micro/traffic_buffer.png)
 
 
 
@@ -271,7 +271,7 @@ nsqadmin监听一个端口：
 
 ## nsq工作模式
 
-![](http://blog.maser.top/micro/nsq_work_flow.png)
+![](https://cdn.jsdelivr.net/gh/eaok/img/micro/nsq_work_flow.png)
 
 
 
@@ -285,7 +285,7 @@ nsqadmin监听一个端口：
 
 `channel`可以并且通常会连接多个客户端。假设所有连接的客户端都处于准备接收消息的状态，则每条消息将被传递到随机客户端。例如：
 
-![](http://blog.maser.top/micro/nsqd_channels.gif)
+![](https://cdn.jsdelivr.net/gh/eaok/img/micro/nsqd_channels.gif)
 
 
 

@@ -4,23 +4,37 @@
 
 makefile中的变量只有一种类型，字符串；
 
-简单变量
+## 简单变量
+
+`:=` 表示变量的值决定于它在makefile中的位置，而不是整个makefile展开后的最终值。
 
 ```makefile
-v := hello
+x := foo
+y := $(x) bar
+x := xyz
+
+#在上例中，y的值将会是 foo bar ，而不是 xyz bar 了。
 ```
 
+`?=`表示如果没有被赋值过就赋予等号后面的值
 
 
-递归定义变量
+
+## 递归定义变量
+
+`=` make会将整个makefile展开后，再决定变量的值。也就是说，变量的值将会是整个makefile中最后被指定的值。
 
 ```bash
-v = hello
+x = foo
+y = $(x) bar
+x = xyz
+
+#在上例中，y的值将会是 xyz bar ，而不是 foo bar 。
 ```
 
 
 
-预定义变量
+## 预定义变量
 
 ```makefile
 CC = gcc
@@ -115,6 +129,17 @@ testforeach:
 
 
 # 函数
+
+函数调用方式
+
+```makefile
+#以“$”来标识，参数间以逗号“,”分隔，而函数名和参数之间以“空格”分隔。
+$(<function> <arguments>)
+或是
+${<function> <arguments>}
+```
+
+
 
 ## wildcard
 
