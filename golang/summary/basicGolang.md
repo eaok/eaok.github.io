@@ -20,7 +20,7 @@ Go的官网中国地区版：https://golang.google.cn
 会自动添加下面的环境变量
 GOPATH %USERPROFILE%\go
 %GOPATH%\bin
-GOROOT C:\Program Files\Go
+GOROOT C:\Program Files\go
 PATH %GOROOT%\bin
 
 
@@ -33,11 +33,10 @@ GOPROXY https://mirrors.aliyun.com/goproxy/
 sudo tar xvzf go1.13.5.linux-amd64.tar.gz -C /usr/local/
 
 #sudo vi ~/.bashrc
-sudo vi /etc/profile
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/golang
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-export GOPROXY=https://mirrors.aliyun.com/goproxy/
+export GOPROXY=https://goproxy.cn,direct
 ```
 
 ### mac中安装
@@ -69,33 +68,48 @@ export GOPATH=/home/pi/golang
 
 ### Go 语言开发工具:
 
-* 1 goland
+* 1 go tools
+
+  * linux 中安装`go-vim`插件后执行`GoInstallBinaries`
+
+  * 也可以使用`go get`安装
+
+    ```shell
+    go get github.com/golangci/golangci-lint/cmd/golangci-lint
+    ```
+
+    官网建议二进制安装
+
+    ```shell
+    curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin
+    ```
+
+  * clone到本地再安装
+
+    ```shell
+    git clone https://github.com/golang/tools.git $GOPATH/src/golang.org/x/tools
+    go install golang.org/x/tools/cmd/guru@latest
+    go install golang.org/x/tools/cmd/gorename@latest
+    go install golang.org/x/tools/cmd/fiximports@latest
+    go install golang.org/x/tools/gopls@latest
+    go install golang.org/x/tools/cmd/godex@latest
+    ```
+
+    
+
+* 2 goland
 
 下载地址：https://www.jetbrains.com/go/
 
-* 2 vscode
+* 3 vscode
 
 下载地址：https://code.visualstudio.com/
 
-* 3 reflex
+* 4 reflex
 
 用于监控文件改动并执行命令：https://github.com/cespare/reflex
 
 .bashrc中可添加`alias okgo="reflex -r '\.go$' go run "`
-
-* 4 vim
-
-复制配置文件`.vimrc`，https://github.com/eaok/dotfiles
-
-安装vundle插件
-
-```shell
-mkdir -p ~/.vim/bundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
-```
-
-
 
 
 
@@ -685,6 +699,21 @@ select {
 ```
 
 如果有多个case都可以运行，Select会随机公平地选出一个执行；Go不会重新对channel或值进行求值。
+
+- 每个 case 都必须是一个通信
+
+- 所有 channel 表达式都会被求值
+
+- 所有被发送的表达式都会被求值
+
+- 如果任意某个通信可以进行，它就执行，其他被忽略。
+
+- 如果有多个 case 都可以运行，Select 会随机公平地选出一个执行。其他不会执行。
+
+  否则：
+
+  1. 如果有 default 子句，则执行该语句。
+  2. 如果没有 default 子句，select 将阻塞，直到某个通信可以运行；Go 不会重新对 channel 或值进行求值。
 
 
 

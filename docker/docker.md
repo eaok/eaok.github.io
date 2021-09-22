@@ -44,6 +44,8 @@ docker cli 的命令主要围绕这四个命令展开：
 
 ## 3. 安装docker
 
+安装文档：https://docs.docker.com/engine/install/
+
 **ubuntu**
 
 `$ sudo apt-get update` 
@@ -98,6 +100,24 @@ docker push registry.cn-shenzhen.aliyuncs.com/kcoewoys/cheers2019:1.0
       "registry-mirrors": ["https://dd31kyx9.mirror.aliyuncs.com"]
 }
 ```
+
+
+
+配置终端下http_proxy和https_proxy两个变量，对docker pull没效果，docker pull的代理需要单独配置。
+
+```shell
+sudo find / -name docker.service
+sudo vi /etc/systemd/system/multi-user.target.wants/docker.service
+
+#[Service]段中第一行添加
+Environment="HTTP_PROXY=192.168.1.246:1080" "HTTPS_PROXY=192.168.1.246:1080"
+
+#重启服务
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+
 
 
 
@@ -415,4 +435,16 @@ docker相关网址：
 * [docker 文档](https://docs.docker.com/ )
 * [阿里Hub服务](https://cr.console.aliyun.com )
 * [daocloud](https://www.daocloud.io/ )
+
+
+
+connect: `permission denied`
+
+```shell
+#1. 将当前用户加入到docker组中
+sudo gpasswd -a go docker
+
+#2. 将当前用户切换到docker组中
+newgrp - docker
+```
 

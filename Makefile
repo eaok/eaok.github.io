@@ -7,7 +7,10 @@ noted = ${patsubst %.md, %, ${wildcard note/*.md note/*/*.md}}
 toolsd = ${patsubst %.md, %, ${wildcard tools/*.md}}
 webd = ${patsubst %.md, %, ${wildcard web/*.md}}
 
+.PHONY: default
+default: all
 
+.PHONY: all
 all: docker golang note tools web top
 
 .PHONY: docker
@@ -40,6 +43,7 @@ web: clean
 		echo "- [$(var)]($(var))" >> web/README.md; \
 	)
 
+.PHONY: top
 top: clean
 	@echo "- [home](/)" >> _navbar.md
 	@echo "- [docker](docker/)" >> _navbar.md
@@ -49,7 +53,7 @@ top: clean
 	@echo "- [web](web/)" >> _navbar.md
 	@echo make complete
 
-
+.PHONY: clean
 clean:
 #	@-find -name *README.md | xargs rm
 	@-find -regex './.*/README.md' | xargs rm

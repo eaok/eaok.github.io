@@ -42,12 +42,12 @@
 Windows下的命令别名工具
 
 ```bash
-doskey /m		#查看已经定义的宏
+doskey/m		#查看已经定义的宏
 ```
 
 
 
-bat文件路径`C:\Users\Administrator\.config\custom`\cmd_auto.bat
+bat文件路径`C:\Users\Administrator\.config\custom\cmd_auto.bat`
 
 ```bat
 @echo off
@@ -241,6 +241,7 @@ wsl -l -v
 wsl --set-version Ubuntu-18.04 2
 wsl --set-default-version 2		//所有版本都默认使用wsl2
 wsl -s Ubuntu-18.04				//设置默认分发版
+wsl --shutdown					//关掉wsl
 ```
 
 

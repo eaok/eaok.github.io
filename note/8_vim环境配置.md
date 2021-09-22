@@ -1,363 +1,164 @@
-## 安装vim
-### 通过包管理安装
+[toc]
+
+# 安装vim
+
+## 通过包管理安装
 
 `sudo apt-get install vim`
 
-### vim命令
+
+
+
+
+# 配置vim
+
+先下载配置文件 https://github.com/eaok/dotfiles
+
+```shell
+# 先配置.bashrc文件，并开启代理
+vi -O .bashrc dotfiles/wsl/.bashrc
+
+# 配置.vimrc，并安装插件
+mkdir -p ~/.vim/bundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vi -O .vimrc dotfiles/wsl/.vimrc
+vim +PluginInstall +qall
 ```
-s   #删除光标所在字符，并进入输入模式
-S   #删除光标所在行，并进入输入模式
-R   #替换多个字符
 
-ncb #剪切光标前n个单词
-nyw #复制光标后n个单词
-ndw #删除光标后n个单词
 
-c$  #剪切从光标所在位置到行尾的字符串
-y^  #复制从光标所在位置到行首的字符串
-d$  #删除或者剪切从光标所在位置到行尾的字符串
+
+
+
+# vim命令
+```
+i/a		#从光标处/从光标下一个字符处编辑
+I/A		#从行首/行尾处编辑
+o/O		#从下一行/上一行编辑
+
+s/S     #删除光标所在字符/行，并进入输入模式
+r/R     #替换单个字符/多个字符
+x/X     #删除当前字符/前一个字符
+
+.	    #重复上个操作
+
+ncb/ncw #剪切光标前/后n个单词
+nyb/nyw #复制光标前/后n个单词
+ndb/ndw #删除光标前/后n个单词
+
+c^/$    #剪切从光标所在位置到行首/行尾的字符串
+y^/$    #复制从光标所在位置到行首行尾的字符串
+d^/$    #删除或者剪切从光标所在位置到行首/行尾的字符串
 
 gg=G            #自动排版
+range =			#选定内容自动排版
+range U/u		#选定内容变为大写/小写
+gg/G            #移动到文件首行/末行
+H/M/L           #移动到屏幕首行/中间行/末行
+zt/zz/zb		#移动当前行到顶端/中央/底端
 
-H               #移动到屏幕首行
-M               #移动到屏幕中间
-L               #移动到屏幕末行
-gg              #移动到文件首行
-G               #移动到文件末行
 
-0               #移动到所在行最前的字符
-^               #移动到所在行第一个非空字符
-$               #移动到所在行最后一个字符
+0/^/$           #移动到所在行最前的字符/第一个非空字符/最后一个字符
 
-b               #移动到上一个单词的第一个字符
-w               #移动到下一个单词的第一个字符
-e               #移动到下一个单词的第一个字符
+b/w             #移动到上/下一个单词的首字母
+e               #移动到下一个单词的尾字母
 
-Ctrl + d        #光标向下移动半页
-Ctrl + f        #光标向下移动一页
-Ctrl + n        #补全单词
-Ctrl + p        #补全单词
-Ctrl + x + l    #补全一行
-Ctrl + x + f    #插入当前目录下文件名
-ctrl + o		#跳到原来的位置
-ctrl + i		#与ctrl+o相反
+n%				#到文件n%的位置。
+n + enter		#向后跳n行
+:n/n+G			#移动到第n行
 
+
+Ctrl + u/d        #光标向上/下移动半页
+Ctrl + b/f        #光标向上/下移动一页
+ctrl + e/y		  #光标向上/下移动一行
+Ctrl + n/p        #补全单词
+Ctrl + x + l      #补全一行
+Ctrl + x + f      #插入当前目录下文件名
+ctrl + o/i		  #跳到原来的位置
+ctrl + u/r		  #撤销/取消撤销
+
+
+q + :			#进入命令历史缓冲区
+q + //?			#进入查找的历史纪录
 /string         #向下查找
 ?string         #向上查找
 
-:range y        #块复制
-:range d        #块删除
+range y        #块复制
+range d        #块删除
 :range s/old_string/new_string/gc      #替换
     #% 表示所有行
     #. 表示当前行
-    #$ 表示末行
     #g 表示行中进行多个匹配
     #c 替换前询问
+    #e 不显示错误
+    #i 不区分大小写
+#删除行尾多余的空格，可以执行如下命令：
+:%s/\s\+$//g
+#删除每行前面的空格，执行如下命令：
+:%s/^\+\s//g
 
+
+vi -o/O file1 file2 #水平/垂直打开两个文件
 :vs file_name       #打开一个文件并左右分割窗口
 :sp file_name       #打开一个文件并上下分割窗口
 ctrl+w+w            #文件之间切换
 
-set paste           #设置为粘贴模式
-set nopaste         #关闭粘贴模式
-set mouse=v         #设置鼠标模式为v
+:set paste           #设置为粘贴模式
+:set nopaste         #关闭粘贴模式
+
 
 qa                  #将后续的命令记入寄存器a,q结束录制
 @a                  #执行寄存器a中录制的内容
 ```
 
-## vim配置
-```
-tabstop             # ts 定义tab所等同的空格长度，一般来说最好设置成8
-shiftwidth          # sw 用于程序中自动缩进所使用的空白长度指示
-softtabstop         # sts 逢8空格进1制表符”,前提是你tabstop=8
-expandtab           # et 以空格替换
 
-cindent             # 用C语言的缩进格式来处理程序的缩进结构
-smartindent         # si 和前一行有相同的缩进量，同时能识别出花括号，函数等
-autoindent          # ai 新增加的行和前一行使用相同的缩进形式
 
-autocmd             # au 自动执行命令
+vim 文件编码
 
-空格和TAB的替换：
-#TAB替换为空格：
-:set ts=4
-:set et
-:%retab!
-
-#空格替换为TAB：
-:set ts=4
-:set noet
-:%retab!
-#加!是用于处理非空白字符之后的TAB，即所有的TAB，若不加!，则只处理行首的TAB
-
-#删除每行后面多余的空格，可以执行如下命令：
-:%s/\s\+$//
-#删除每行前面的空格，执行如下命令：
-:%s/^\+\s//
-```
-`/etc/vim/vimrc`配置
-```
-syntax on
-
-set nu
-set pastetoggle=<F11>           "按f11打开或关闭粘贴模式
-set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1		"vim 文件编码
-
-" \ should be followed by /, ? or &
-set nocompatible
-
-set foldenable              " 开始折叠
-set fdm=syntax              " 设置语法折叠
-set foldcolumn=0            " 设置折叠区域的宽度
-setlocal foldlevel=1        " 设置折叠层数为
-set foldlevelstart=99       " 打开文件是默认不折叠代码
-set foldclose=all           " 设置为自动关闭折叠
-nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-"用空格键来开关折叠
-"zM 折叠所有代码
-"zR 取消所有代码折叠
-"zC 递归折叠代码
-"zO 递归取消折叠
-"[z ]z zj zk 移动
-
-au BufNewFile,BufRead *.c,*.cpp,*.h
-    \ set cindent
-
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set textwidth=79 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix |
-    \ set encoding=utf-8 |
-    \ let python_highlight_all=1
-
-au BufNewFile,BufRead *.js,*.html,*.css
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2
-
-"标识不必要的空白字符
-highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t\+\|\t\+\zs \+/
+```shell
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 ```
 
-## vim插件
-### ctags
-ctags网址：http://ctags.sourceforge.net/
-1、安装:
-`sudo apt-get install ctags`
-2、生成索引文件:
-去需要查找的目录执行:`ctags -R .`
-3、配置vim`sudo vim /etc/vim/vimrc`
-`set tags+=建立索引文件的目录/tags`
-也可以临时添加索引：
-`settags=建立索引文件的目录/tags`
-4、使用
-```
-ctrl + ]        #跟进
-Ctrl＋W + ］    #新窗口显示当前光标下单词的标签，光标跳到标签处
-ctrl + o        #返回
-ctrl + t        #返回
+Vim 有四个跟字符编码方式有关的选项，encoding、fileencoding、fileencodings、termencoding
 
-vi -t tag_name  #打开定义tag_name的文件，并把光标定位到这一行
-ts + tag_name   #搜索tag_name
-tp              #上一个
-tn              #下一个
-```
+encoding: Vim 内部使用的字符编码方式，包括 Vim 的 buffer (缓冲区)、菜单文本、消息文本等。
 
-### cscope
-cscope网址：http://cscope.sourceforge.net/
-Cscope tutorial：http://cscope.sourceforge.net/cscope_vim_tutorial.html
+fileencoding: Vim 中当前编辑的文件的字符编码方式，Vim 保存文件时也会将文件保存为这种字符编码方式 (不管是否新文件都如此)。
 
-1、安装cscope
-`./configure --with-flex`
-`make && sudo make install`
-2、配置vim `sudo vi /etc/vim/vimrc` 添加以下内容
-```
-if has("cscope")
+fileencodings: Vim 启动时会按照它所列出的字符编码方式逐一探测即将打开的文件的字符编码方式，并且将 fileencoding 设置为最终探测到的字符编码方式。因此最好将 Unicode 编码方式放到这个列表的最前面，将拉丁语系编码方式 latin1 放到最后面。
 
-    """"""""""""" Standard cscope/vim boilerplate
-
-    " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
-    set cscopetag
-
-    " check cscope for definition of a symbol before checking ctags: set to 1
-    " if you want the reverse search order.
-    set csto=0
-
-    " add any cscope database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out
-    " else add the database pointed to by environment variable
-    elseif $CSCOPE_DB != ""
-        cs add $CSCOPE_DB
-    endif
-
-    " show msg when any other cscope db added
-    set cscopeverbose
+termencoding: Vim 所工作的终端 (或者 Windows 的 Console 窗口) 的字符编码方式。这个选项在 Windows 下对我们常用的 GUI 模式的 gVim 无效，而对 Console 模式的 Vim 而言就是 Windows 控制台的代码页，并且通常我们不需要改变它。
 
 
-    """"""""""""" My cscope/vim key mappings
-    "
-    " The following maps all invoke one of the following cscope search types:
-    "
-    "   's'   symbol: find all references to the token under cursor
-    "   'g'   global: find global definition(s) of the token under cursor
-    "   'c'   calls:  find all calls to the function name under cursor
-    "   't'   text:   find all instances of the text under cursor
-    "   'e'   egrep:  egrep search for the word under cursor
-    "   'f'   file:   open the filename under cursor
-    "   'i'   includes: find files that include the filename under cursor
-    "   'd'   called: find functions that function under cursor calls
-    "
-    " Below are three sets of the maps: one set that just jumps to your
-    " search result, one that splits the existing vim window horizontally and
-    " diplays your search result in the new window, and one that does the same
-    " thing, but does a vertical split instead (vim 6 only).
-    "
-    " I've used CTRL-\ and CTRL-@ as the starting keys for these maps, as it's
-    " unlikely that you need their default mappings (CTRL-\'s default use is
-    " as part of CTRL-\ CTRL-N typemap, which basically just does the same
-    " thing as hitting 'escape': CTRL-@ doesn't seem to have any default use).
-    " If you don't like using 'CTRL-@' or CTRL-\, , you can change some or all
-    " of these maps to use other keys.  One likely candidate is 'CTRL-_'
-    " (which also maps to CTRL-/, which is easier to type).  By default it is
-    " used to switch between Hebrew and English keyboard mode.
-    "
-    " All of the maps involving the <cfile> macro use '^<cfile>$': this is so
-    " that searches over '#include <time.h>" return only references to
-    " 'time.h', and not 'sys/time.h', etc. (by default cscope will return all
-    " files that contain 'time.h' as part of their name).
 
+同一个文件中出现多种换行时
 
-    " To do the first type of search, hit 'CTRL-\', followed by one of the
-    " cscope search types above (s,g,c,t,e,f,i,d).  The result of your cscope
-    " search will be displayed in the current window.  You can use CTRL-T to
-    " go back to where you were before the search.
-    "
+```shell
+#转换文件换行方式，设置fileformat属性
+:set ff=dos (\r\n win换行)
+:set ff=unix (\n unix/linux换行)
+:set ff=mac (\r Mac换行)
 
-    nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-    nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-
-
-    " Using 'CTRL-spacebar' (intepreted as CTRL-@ by vim) then a search type
-    " makes the vim window split horizontally, with search result displayed in
-    " the new window.
-    "
-    " (Note: earlier versions of vim may not have the :scs command, but it
-    " can be simulated roughly via:
-    "    nmap <C-@>s <C-W><C-S> :cs find s <C-R>=expand("<cword>")<CR><CR>
-
-    nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
-    nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>
-
-
-    " Hitting CTRL-space *twice* before the search type does a vertical
-    " split instead of a horizontal one (vim 6 and up only)
-    "
-    " (Note: you may wish to put a 'set splitright' in your .vimrc
-    " if you prefer the new window on the right instead of the left
-
-    nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@><C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@><C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@><C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
-    nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
-
-
-    """"""""""""" key map timeouts
-    "
-    " By default Vim will only wait 1 second for each keystroke in a mapping.
-    " You may find that too short with the above typemaps.  If so, you should
-    " either turn off mapping timeouts via 'notimeout'.
-    "
-    "set notimeout
-    "
-    " Or, you can keep timeouts, by uncommenting the timeoutlen line below,
-    " with your own personal favorite value (in milliseconds):
-    "
-    "set timeoutlen=4000
-    "
-    " Either way, since mapping timeout settings by default also set the
-    " timeouts for multicharacter 'keys codes' (like <F1>), you should also
-    " set ttimeout and ttimeoutlen: otherwise, you will experience strange
-    " delays as vim waits for a keystroke after you hit ESC (it will be
-    " waiting to see if the ESC is actually part of a key code like <F1>).
-    "
-    "set ttimeout
-    "
-    " personally, I find a tenth of a second to work well for key code
-    " timeouts. If you experience problems and have a slow terminal or network
-    " connection, set it higher.  If you don't set ttimeoutlen, the value for
-    " timeoutlent (default: 1000 = 1 second, which is sluggish) is used.
-    "
-    "set ttimeoutlen=100
-
-endif
-```
-3、使用
-建立一个cscope数据库:
-`find . -name "*.h" -o -name "*.c" -o -name "*.cpp" > cscope.files`
-`cscope -Rbkq -i cscope.files`
-`ctags -R`
-添加一个cscope链接库:
-`:cs add cscope.out`
-查找:
-`:cs find s name` 查找
-`:cw` 查看查找结果的列表
-```
-cscope -Rbkq
-R 表示把所有子目录里的文件也建立索引
-b 表示cscope不启动自带的用户界面，而仅仅建立符号数据库
-q 生成cscope.in.out和cscope.po.out文件，加快cscope的索引速度
-k 在生成索引文件时，不搜索/usr/include目录
-
-：cs find s ---- 查找C语言符号，即查找函数名、宏、枚举值等出现的地方
-：cs find g ---- 查找函数、宏、枚举等定义的位置，类似ctags所提供的功能
-：cs find d ---- 查找本函数调用的函数
-：cs find c ---- 查找调用本函数的函数
-：cs find t ---- 查找指定的字符串
-：cs find e ---- 查找egrep模式，相当于egrep功能，但查找速度快多了
-：cs find f ---- 查找并打开文件，类似vim的find功能
-：cs find i ---- 查找包含本文件的文
-Ctrl+\ 可以代替 ：cs find
-
-:cs show            #显示cscope的链接
-:cs reset           #重新初始化所有的cscope链接
-:cs kill            #杀掉一个cscope链接
-:cs help            #显示一个简短的摘要
+#统一换行符，去掉\r
+:%s/\r//g
 ```
 
-### vundle
-Vundle地址：https://github.com/VundleVim/Vundle.vim
-在vi中执行命令
 
+
+代码中Tab和空格混排
+
+```shell
+#将代码中原有的Tab转成4个空格
+:set ts=4  sw=4 et
+:%ret!
+
+#可将代码中原有的4个空格转成Tab
+:set ts=4  sw=4 noet
+:%ret!
 ```
-:PluginList       - lists configured plugins
-:PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-:PluginSearch foo - searches for foo; append `!` to refresh local cache
-:PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-:h vundle         - more details
-```
+
+
+
+# vim插件
 
 python相关插件
 ```
@@ -396,6 +197,9 @@ ctrlp插件使用
 
 
 
-参考：
+vim打开没有sudo文件时，要保存可以用下面的命令：
 
-https://www.cnblogs.com/yangjig/p/6014198.html
+```
+:w !sudo tee %
+```
+

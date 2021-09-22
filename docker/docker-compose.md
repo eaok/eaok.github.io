@@ -13,8 +13,8 @@ Docker Compose 是 docker 提供的一个命令行工具，用来定义和运行
 安装
 
 ```bash
-sudo apt-get install python-pip
-pip install docker-compose
+sudo apt-get install python3-pip
+sudo pip install docker-compose
 ```
 
 看安装的版本

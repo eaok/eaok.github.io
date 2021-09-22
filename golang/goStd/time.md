@@ -100,6 +100,11 @@ time.Now().UnixNano()
 ```go
 now := time.Now().Unix()
 time.Unix(now, 0)
+
+// 时间差值由time.Duration 转为 time.Time，然后格式化输出
+timeSub := time.Since(namesList[i].time)
+value := time.Unix(int64(timeSub), 0)
+fmt.Sprintf("%d:%d:%d\n", value.Hour(), value.Minute(), value.Second())
 ```
 
 设置时区
@@ -133,3 +138,6 @@ t3 := t1.AddDate(1, 0, 0)
 t2.Sub(t1)
 ```
 
+
+
+[golang包time用法详解](https://blog.csdn.net/wschq/article/details/80114036)

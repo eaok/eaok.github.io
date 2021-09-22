@@ -19,6 +19,7 @@ func Trim(s string, cutset string) string
 func TrimLeft(s string, cutset string) string
 func TrimRight(s string, cutset string) string
 func TrimSpace(s string) string
+func TrimPrefix(s, prefix string) string
 
 // 字符串分割与拼接
 func Fields(s string) []string			// 按照一个或多个连续的空格将字符串s进行分割

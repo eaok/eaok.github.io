@@ -38,6 +38,26 @@
   | `Ctrl+b` |   `~`    |             列出提示信息缓存             |
   | `Ctrl+b` |   `t` |                           显示时钟         |
 
+tmux中的复制模式步骤
+
+> C-b [ 进入复制模式
+>
+> 移动光标，可以用vim的搜索功能"/","?"
+>
+> 按空格该市选择复制区域
+>
+> 按回车退出
+>
+> C-b ] 粘贴
+
+
+
+tmux 中复制到粘贴板
+
+> shift + 鼠标选择，然后ctrl + shift + c；
+
+
+
 * 配置文件
 
   > ~/.tmux_conf
@@ -58,7 +78,7 @@ tmux kill-session -t <session-name>	#杀死某个会话
 tmux kill-server 					#关闭服务器，所有的会话都将关闭
 
 tmux switch -t <session-name>		#切换到某个会话
-tmux rename-session -t <session-name>	#重命名会话
+tmux rename -t <session-name>		#重命名会话
 ```
 
 |   前缀   |   指令   |                   描述                   |

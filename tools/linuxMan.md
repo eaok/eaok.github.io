@@ -137,7 +137,7 @@ Shift + up/down		上下滚动
   #查看压缩包里面的文件
   tar tvf lua-5.3.5.tar.gz
   
-  #解压缩tar.gz文件
+  #解压缩文件,tar会根据文件的后缀自动选择压缩类型
   tar cvf xxx.tar.gz xxx/
   tar xvf xxx.tar.gz
   
@@ -155,6 +155,12 @@ Shift + up/down		上下滚动
 
   ```bash
   sudo unzip protoc-3.10.0-rc-1-linux-x86_64.zip -d /usr/local/
+  ```
+
+* rar/unrar
+
+  ```shell
+  unrar e file.rar
   ```
 
 

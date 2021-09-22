@@ -9,16 +9,22 @@
 字符串转整型
 
 ```go
+// string到int
 num1, err := strconv.Atoi(str)				//第一种
 num1, err := strconv.ParseInt(str, 10, 0)	//第二种
+
+// string到int64
 num2, err := strconv.ParseInt(str, 10, 64)	//转为int64
 ```
 
 整型转字符串
 
 ```go
+// int到string 
 str1 := strconv.Itoa(num1)					//第一种
 str1 := fmt.Sprintf("%d", num1)				//第二种
+
+// int64到string 
 str1 := strconv.FormatInt(int64(num1), 10)	//第三种
 ```
 
@@ -119,5 +125,20 @@ func main() {
     fmt.Printf("%08b &^%08b = %08b [A 'AND NOT' B]\n", a, b, a&^b)
     fmt.Printf("%08b&(^%08b)= %08b [A AND (NOT B)]\n", a, b, a&(^b))
 }
+```
+
+
+
+字符串拼接：
+
+```
+//用加号连接
+str += ""
+
+// 用fmt.Sprintf
+str = fmt.Sprintf("%s %s", str1, str2)
+
+// 用strings.join
+fmt.Println(strings.Join(os.Args[1:], " "))
 ```
 
