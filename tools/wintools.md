@@ -168,11 +168,37 @@ export LESS="$LESS -R -Q"
 
 ## wsl
 
-wsl文档：https://docs.microsoft.com/zh-cn/windows/wsl/
+### 安装wsl2
 
-windows10 ubuntu18.04子系统配置
+1 启用可选功能项，然后重启
 
-```bash
+* 适用于 Linux 的 Windows 子系统
+* Hyper-V
+
+或者直接在有管理员权限的powershell中输入：
+
+```
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+
+2 下载并安装WSL2 Linux内核更新包：https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-kernel
+
+3 将 WSL 2 设置为默认版本
+
+```
+wsl --set-default-version 2
+```
+
+4 微软商店中安装linux版本，首次启动需要设置用户名和密码
+
+
+
+### wsl配置
+
+#### 1 ssh连接
+
+```shell
 vi /etc/ssh/sshd_config
 PasswordAuthentication yes
 
@@ -181,10 +207,9 @@ sudo service ssh restart
 
 
 
-WSL 服务自动启动
+#### 2 WSL 服务自动启动
 
-1 创建并编辑文件：/etc/init.wsl
-
+1. 创建并编辑文件：/etc/init.d/wsl
 ```bash
 #! /bin/sh
 /etc/init.d/cron $1
@@ -192,13 +217,13 @@ WSL 服务自动启动
 /etc/init.d/supervisor $1
 ```
 
-2 增加可执行权限
+2. 增加可执行权限
 
 ```bash
 sudo chmod +x /etc/init.wsl
 ```
 
-3 在win10启动菜单中添加脚本
+3. 在win10启动菜单中添加脚本
 
 ```cmd
 shell: startup
@@ -206,42 +231,37 @@ shell: startup
 #在Ubuntu-20.04.vbs添加下面两行
 Set ws = CreateObject("Wscript.Shell")
 ws.run "wsl -d Ubuntu-20.04 -u root /etc/init.wsl start", vbhide
-
-#查看发行版的名字
-wslconfig/l
 ```
 
 
 
-访问wsl中的文件
+#### 3 文件指令互通
 
-```
+```shell
+#访问wsl中的文件
 \\wsl$\Ubuntu-18.04\home\beaver
+
+#用文件管理器打开当前目录
+explorer.exe . 
+#用vscode打开当前目录
+code .
+
+#查找win指令的内容
+ipconfig.exe | grep IPv4
+#输出到超级剪贴板，win+v可调出查看
+ip address show eth0 | clip.exe
 ```
 
-在wsl里打开当前文件夹
-
-```
-explorer.exe .
-```
 
 
-
-
-
-wsl2
-
-更新地址：https://docs.microsoft.com/zh-cn/windows/wsl/install-win10
-
-下载内核组件：https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-kernel
+#### 4 wls常用指令
 
 ```bash
-dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-wsl -l -v
-wsl --set-version Ubuntu-18.04 2
-wsl --set-default-version 2		//所有版本都默认使用wsl2
-wsl -s Ubuntu-18.04				//设置默认分发版
-wsl --shutdown					//关掉wsl
+wsl -l -v	#查看Linux子系统及其版本
+wsl --set-version Ubuntu-20.04 2
+wsl --set-default-version 2		#所有版本都默认使用wsl2
+wsl -s Ubuntu-20.04				#设置默认分发版
+wsl --shutdown					#关掉wsl
 ```
 
 
@@ -249,11 +269,45 @@ wsl --shutdown					//关掉wsl
 启动 WSL 2时警告“参考的对象类型不支持尝试的操作”
 
 ```powershell
-//参考https://zhuanlan.zhihu.com/p/151392411
 netsh winsock reset
 ```
 
 
+
+### wsl常见问题
+
+1. vmmem进程占用过多内存
+
+   ```
+   # %UserProfile%\.wslconfig
+   # https://docs.microsoft.com/en-us/windows/wsl/release-notes#build-18945
+   
+   [wsl2]
+   memory=1GB                  # How much memory to assign to the WSL2 VM.
+   swap=2GB                    # How much swap space to add to the WSL2 VM. 0 for no swap file.
+   localhostForwarding=true    # Boolean specifying if ports bound to wildcard or localhost in the WSL2 VM should be connectable from the host via localhost:port (default true).
+   ```
+
+2. wsl2镜像过大
+
+   ```
+   diskpart
+   select vdisk file=C:\Users\Administrator\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu20.04LTS_79rhkp1fndgsc\LocalState\ext4.vhdx
+   attach vdisk readonly
+   compact vdisk
+   detach vdisk
+   exit
+   ```
+
+3. 
+
+
+
+参考：
+
+wsl文档：https://docs.microsoft.com/zh-cn/windows/wsl/
+
+WSL2——win10可能是最好的Linux发行版：https://zhuanlan.zhihu.com/p/394776349
 
 
 

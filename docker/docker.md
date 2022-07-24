@@ -401,6 +401,9 @@ docker pull mysql
 docker run --name mysql -e MYSQL_ROOT_PASSWORD=root -dp 3306:3306 --restart=always mysql
 docker exec -it mysql /bin/bash mysql -uroot -proot 
 
+#使用Navicat连接mysql报错
+alter user 'root'@'%' identified with mysql_native_password BY 'root'; 
+flush privileges;
 #解决windows上的连接错误
 alter user 'root'@'%' identified with mysql_native_password BY 'root'; 
 alter user 'root'@'localhost' identified with mysql_native_password BY 'root';

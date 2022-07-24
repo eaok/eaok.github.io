@@ -1,6 +1,9 @@
-# go mod
+[toc]
 
-### 0x00 go mod 命令
+
+
+# 0x00 go mod 命令
+
 ```
 go mod help
     download    下载依赖的module到本地cache
@@ -13,13 +16,19 @@ go mod help
     why         解释为什么需要依赖
 ```
 
-### 0x01 设置 GO111MODULE
+
+
+# 0x01 设置 GO111MODULE
+
 * GO111MODULE=off 无模块支持，go 会从 GOPATH 和 vendor 文件夹寻找包。
 * GO111MODULE=on 模块支持，忽略 GOPATH 和 vendor，只根据 go.mod 下载依赖。
 * GO111MODULE=auto 在 GOPATH/src 外面且根目录有 go.mod 文件时，开启模块支持。
 > 在使用模块的时候，下载的依赖储存在 GOPATH/pkg/mod 中，go install 的结果放在 $GOPATH/bin 中。Mod Cache 路径在GOPATH/pkg/mod/cache下面。
 
-### 0x02 使用go mod
+
+
+# 0x02 使用go mod
+
 1 创建go.mod文件
 > go mod init github.com/kcoewoys/project
 
@@ -57,3 +66,54 @@ go mod 代理
 export GOPROXY=https://mirrors.aliyun.com/goproxy/
 export GOPROXY=https://goproxy.io
 ```
+
+
+
+# 0x03 工作区
+
+项目目录如下
+
+```
+workspace-demo
+├── project
+│   ├── go.mod      // 项目模块,mod子模块
+│   └── main.go
+├── go.work         // 工作区,work上层模块
+└── tools
+    ├── fish.go
+    └── go.mod      // 工具模块,mod子模块
+```
+
+
+
+初始化工作区
+
+```shell
+# 新建工作区文件夹
+mkdir workspace-demo
+cd workspace-demo
+
+# 克隆项目 project 和开发的模块 tools, 这里仅作参考,请替换为合适的 git 仓库
+git clone https://github.com/me/project
+git clone https://github.com/me/tools
+
+# 初始化工作区
+go work init ./project ./tools
+```
+
+
+
+修改 go.work 并且 replace 远程 tools 模块到本地
+
+```go
+go 1.18
+
+use (
+        ./project
+        ./tools
+)
+
+//修改远程模块为本地替换
+replace github.com/me/tools => ./tools
+```
+

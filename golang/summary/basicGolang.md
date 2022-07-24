@@ -6,7 +6,7 @@
 
 ## 1.1 环境安装
 
-Go的官网地址：https://golang.org
+Go的官网地址：https://go.dev
 
 Go的官网中国地区版：https://golang.google.cn
 
@@ -893,13 +893,26 @@ unsafe.Sizeof(var_name) //查看变量量占⽤用字节
 
 双引号的形式可以识别转义字符；反引号的形式以原生形式输出；
 
-Go中字符串一旦赋值了，就不能再修改；
+Go中字符串一旦赋值了，就不能再修改，因为存储在只读的常量存储区中；
 
-|类型  |名称 |长度  |零值 |说明           |
+底层结构：
+
+```go
+type StringHeader struct {
+	Data uintptr	// 8byte
+	Len  int		// 8byte
+}
+```
+
+
+
+#### 基本类型大小
+
+|类型  |名称 |大小  |零值 |说明           |
 |-----|----|------|-----|--------------|
 |bool |布尔类型 |1 |false |其值不不为真即为假，不不可以⽤用数字代表true或false|
 |byte |字节型 |1 |0 |uint8别名|
-|int/uint |整型 |- |0 |根据操作系统设定数据的值。|
+|int/uint |整型 |4/8 |0 |根据操作系统设定数据的值。|
 |int8 |整型  |1 |0 |-128 |
 |uint8 |整型 |1 |0 |0 |
 |int16 |整型 |2 |0 |-32768 |
@@ -910,7 +923,7 @@ Go中字符串一旦赋值了，就不能再修改；
 |uint64 |整型 |8 |0 |0 |
 |float32 |浮点型 |4 |0.0 |小数位精确到7位|
 |float64 |浮点型 |8 |0.0 |小数位精确到15位|
-|string |字符串 |- |"" |utf-8字符串|
+|string |字符串 |8/16 |"" |底层为结构体，一个指向数据的指针，一个len|
 
 
 
@@ -943,17 +956,18 @@ array := [4][2]int{1: {0: 20}, 3: {1: 41}}
 ##### 切片定义
 
 ```go
-var slice []int			//创建nil整形切片
+var s []int				//创建nil整形切片
+var s = *new([]int)		//创建nil整形切片
 
-slice := make([]int, 0)	//空的整形切片
-slice := []int{}		//空的整形切片
+s := make([]int, 0)	//空的整形切片
+s := []int{}		//空的整形切片
 
-silce := make([]string, 5)	//长度和容量都为5
-slice := make([]int, 3, 5)	//长度为3,容量为5
-slice := []int{1, 2, 3, 4, 5}	//长度和容量都为5
-slice := []string{99: ""}		//长度和容量都为100
+s := make([]string, 5)		//长度和容量都为5
+s := make([]int, 3, 5)		//长度为3,容量为5
+s := []int{1, 2, 3, 4, 5}	//长度和容量都为5
+s := []string{99: ""}		//长度和容量都为100
 
-slice := [][]int{{10}, {100, 200}}	//二维切片
+s := [][]int{{10}, {100, 200}}	//二维切片
 ```
 
 ##### slice底层的数据结构
@@ -1312,6 +1326,12 @@ type(expression)
 隐式转换
 
 通过函数传值来实现
+
+通过断言
+
+```go
+a := interface.(int)
+```
 
 
 
@@ -2040,6 +2060,71 @@ func main() {
 ### 继承vs组合
 
 [匿名字段](#匿名字段)
+
+
+
+泛型
+
+```go
+type HashMap[K comparable, V any] struct {
+	hashmap map[K]V
+}
+
+func (h *HashMap[K, V]) Set(key K, value V) {
+	h.hashmap[key] = value
+}
+func (h *HashMap[K, V]) Get(key K) (value V, ok bool) {
+	value, ok = h.hashmap[key]
+	return value, ok
+}
+
+func TestGenerics(t *testing.T) {
+	//[string,string] 类型的 hashmap
+	hashmap1 := &HashMap[string, string]{hashmap: make(map[string]string)}
+	hashmap1.Set("k1", "v1")
+	value, _ := hashmap1.Get("k1")
+	fmt.Printf("value2: %v,type=%T\n", value, value) // value2: v1,type=string
+    
+	//[string,int] 类型的 hashmap
+	hashmap2 := &HashMap[string, int]{hashmap: make(map[string]int)}
+	hashmap2.Set("k1", 1)
+	value2, _ := hashmap2.Get("k1")
+	fmt.Printf("value2: %v,type=%T\n", value2, value2) // value2: 1,type=int
+}
+
+```
+
+
+
+## 2.7 少见的用法
+
+### 格式化输出%v、%+v、%#v
+
+* %v 只输出所有值
+* %+v 先输出字段名，再输出值
+* %#v 先输出结构体的名字，再输出结构体（字段名+字段值）
+
+```go
+package main
+import "fmt"
+ 
+type student struct {
+	id   int32
+	name string
+}
+ 
+func main() {
+	a := &student{id: 1, name: "xiaoming"}
+ 
+	fmt.Printf("a=%v	\n", a)
+	fmt.Printf("a=%+v	\n", a)
+	fmt.Printf("a=%#v	\n", a)
+}
+```
+
+
+
+
 
 
 

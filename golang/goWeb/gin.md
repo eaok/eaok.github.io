@@ -1117,3 +1117,48 @@ authorized.GET("/secrets", func(c *gin.Context) {
 })
 ```
 
+
+
+### 通过中间件对HTTPS的支持
+
+获取证书：
+
+* 申请域名
+* 给域名申请免费的证书
+* 下载对应的pem和key文件
+
+示例代码：
+
+```go
+package main
+
+import (
+    "github.com/gin-gonic/gin"
+    "github.com/unrolled/secure"
+)
+
+func main() {
+    router := gin.Default()
+    router.Use(TlsHandler())
+
+    router.RunTLS(":8080", "ssl.pem", "ssl.key")
+}
+
+func TlsHandler() gin.HandlerFunc {
+    return func(c *gin.Context) {
+        secureMiddleware := secure.New(secure.Options{
+            SSLRedirect: true,
+            SSLHost:     "localhost:8080",
+        })
+        err := secureMiddleware.Process(c.Writer, c.Request)
+        if err != nil {
+            return
+        }
+
+        c.Next()
+    }
+}
+```
+
+
+

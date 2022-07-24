@@ -1,4 +1,6 @@
-# go test
+[toc]
+
+
 
 ### 0x00 传统测试
 ```go
@@ -178,7 +180,77 @@ perflock -governor 70% go test -test=none -bench=.
 
 
 
-### 0x05 第三方测试库
+### 0x05 模糊测试
+
+- fuzzing testing 模糊测试/随机测试会随机或者根据开发人员的初始数据随机数据并持续性的测试软件的可靠性
+- go test工具链目前的成员有: 单元测试test、性能基准测试bench, 模糊测试fuzzing
+
+
+
+```go
+package main
+
+import (
+	"fmt"
+	"testing"
+	"unicode/utf8"
+
+	"github.com/stretchr/testify/assert"
+)
+
+//字符串反转函数(待测试)
+func Reverse(s string) string {
+	b := []byte(s)
+	for i, j := 0, len(b)-1; i < len(b)/2; i, j = i+1, j-1 {
+		b[i], b[j] = b[j], b[i]
+	}
+	return string(b)
+}
+
+//普通单元测试
+func TestReverse(t *testing.T) {
+	testcases := []struct {
+		in, expect string
+	}{
+		{"Hello, world", "dlrow ,olleH"},
+		{" ", " "},
+		{"!12345", "54321!"},
+	}
+	for _, tc := range testcases {
+		actual := Reverse(tc.in)
+		assert.Equal(t, tc.expect, actual)
+	}
+}
+
+//模糊测试,和单元测试相辅相成
+// go test -fuzz=Fuzz -run ^FuzzReverse$  -v
+//会生成 testdata 里面有崩溃的测试数据,Fial的数据
+func FuzzReverse(f *testing.F) {
+	testcases := []string{"Hello, world", " ", "!12345"}
+	for _, tc := range testcases {
+		f.Add(tc) // Use f.Add to provide a seed corpus
+	}
+	f.Fuzz(func(t *testing.T, orig string) {
+		fmt.Printf(".")
+		rev := Reverse(orig)
+		doubleRev := Reverse(rev)
+		if orig != doubleRev {
+			t.Errorf("Before: %q, after: %q", orig, doubleRev)
+		}
+		if utf8.ValidString(orig) && !utf8.ValidString(rev) {
+			t.Errorf("Reverse produced invalid UTF-8 string %q", rev)
+		}
+	})
+}
+```
+
+
+
+
+
+
+
+### 0x06 第三方测试库
 
 - [goconvey](https://github.com/smartystreets/goconvey)
 
