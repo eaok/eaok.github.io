@@ -411,6 +411,8 @@ alter user 'root'@'localhost' identified with mysql_native_password BY 'root';
 mysql --help | grep "Default options" -A 1 
 vi /etc/mysql/my.cnf
 default-authentication-plugin=mysql_native_password
+#navicat [Err] 1055 - Expression
+SET sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 redis:
 docker run --name redis -dp 6379:6379 --restart=always redis

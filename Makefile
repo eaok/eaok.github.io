@@ -11,34 +11,34 @@ webd = ${patsubst %.md, %, ${wildcard web/*.md}}
 default: all
 
 .PHONY: all
-all: docker golang note tools web top
+all: clean docker golang note tools web top
 
 .PHONY: docker
-docker: clean
+docker: 
 	@$(foreach var, $(dockerd), \
 		echo "- [$(var)]($(var))" >> docker/README.md; \
 	)
 
 .PHONY: golang
-golang: clean
+golang: 
 	@$(foreach var, $(golangd), \
 		echo "- [$(var)]($(var))" >> golang/README.md; \
 	)
 
 .PHONY: note
-note: clean
+note: 
 	@$(foreach var, $(noted), \
 		echo "- [$(var)]($(var))" >> note/README.md; \
 	)
 
 .PHONY: tools
-tools: clean
+tools: 
 	@$(foreach var, $(toolsd), \
 		echo "- [$(var)]($(var))" >> tools/README.md; \
 	)
 
 .PHONY: web
-web: clean
+web: 
 	@$(foreach var, $(webd), \
 		echo "- [$(var)]($(var))" >> web/README.md; \
 	)

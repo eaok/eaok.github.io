@@ -1032,6 +1032,8 @@ sort.Search(n int, f func(int) bool) int //Search uses binary search to find and
 
 * 如果知道了slice的长度，make 函数最好传递长度进去，防止 append 操作可能导致重新分配内存降低效率。
 * 函数传参时数组会复制整个数组，所以一般用切片传参；
+* 字节型的slice可以使用bytes.Equel进行比较，其他类型只能逐个比较了；
+* 测试一个slice是否为空，不能使用nil进行判断，需要用len(s) == 0进行判断；
 
 
 
@@ -1070,6 +1072,11 @@ func UseMapAsSet() {
     }
 }
 ```
+
+总结：
+
+* map中的key必须支持运算符“==”；
+* 禁止对map的元素取址，不能取址是因为，随着元素数量的增加，可能会分配更大的内存空间，而导致之前的地址失效；
 
 
 
